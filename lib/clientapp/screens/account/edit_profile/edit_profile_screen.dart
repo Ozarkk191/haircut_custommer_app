@@ -17,13 +17,10 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
   Gender _gender;
   String _firstname = "";
   String _lastname = "";
   String _address = "";
-  Future<String> _initAddress;
 
   bool _check() {
     if (_firstname == "" || _lastname == "" || _address == "") {
@@ -33,13 +30,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
+  _getStringAddress() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String stringValue = prefs.getString('address_string') ?? "";
+
+    return stringValue;
+  }
+
   @override
   void initState() {
     super.initState();
-    //  _address = prefs.getString('address_string') ?? "";
-    _initAddress = _prefs.then((SharedPreferences prefs) {
-      return (prefs.getString('address_string') ?? "");
-    });
   }
 
   @override
@@ -129,7 +130,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   BigRoundTextField(
                     marginTop: 10,
                     hintText: 'address',
-                    initialValue: _initAddress.,
                     maxLines: 4,
                     enabled: false,
                     keyboardType: TextInputType.text,

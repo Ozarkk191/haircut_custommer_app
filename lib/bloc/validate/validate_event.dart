@@ -41,3 +41,8 @@ class AddressFieldEvent extends ValidateEvent {
   final String value;
   AddressFieldEvent({@required this.value});
 }
+
+class TitleAddressFieldEvent extends ValidateEvent {
+  final String value;
+  TitleAddressFieldEvent({@required this.value});
+}

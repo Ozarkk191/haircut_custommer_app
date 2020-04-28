@@ -1,24 +1,33 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
+import 'package:haircut_delivery/clientapp/models/address_model.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_address.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_default_appbar.dart';
-import 'package:haircut_delivery/clientapp/ui/buttons/custom_round_button.dart';
+import 'package:haircut_delivery/clientapp/ui/buttons/big_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/horizontal_line.dart';
+import 'package:haircut_delivery/helpers/share_helper.dart';
+import 'package:haircut_delivery/screen/pinlocation/pin_location_screen.dart';
+import 'package:haircut_delivery/ui/textfield/big_round_textfield.dart';
 import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 
 class ClientAppAddAddressPage extends StatefulWidget {
   final ClientAppAddress address;
+  final String typeAddress;
 
-  ClientAppAddAddressPage({Key key, this.address}) : super(key: key);
+  ClientAppAddAddressPage({Key key, this.address, this.typeAddress})
+      : super(key: key);
 
   @override
   _ClientAppAddAddressPageState createState() =>
@@ -32,6 +41,31 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
   BitmapDescriptor _markerIcon;
   TextEditingController _titleController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
+
+  String _titleAddress = "";
+  String _address = "";
+
+  double _latitude = 18.807268;
+  double _longitude = 99.0159334;
+
+  bool _check() {
+    if (_titleAddress == "" || _address == "") {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  void _saveData() {
+    AddressModel value = AddressModel(
+        addressType: widget.typeAddress,
+        addressTitle: _titleAddress,
+        address: _address,
+        addressLat: _latitude,
+        addressLon: _longitude);
+
+    SharedPref().save('address', json.encode(value));
+  }
 
   void initState() {
     super.initState();
@@ -48,6 +82,23 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
     super.dispose();
     _titleController.dispose();
     _addressController.dispose();
+  }
+
+  void updateInformation(LatLng latLng) {
+    setState(() {
+      _latitude = latLng.latitude;
+      _longitude = latLng.longitude;
+      print('value of latLng :: $_latitude , $_longitude');
+    });
+  }
+
+  void moveToSecondPage() async {
+    final information = await Navigator.push(
+      context,
+      MaterialPageRoute(
+          fullscreenDialog: true, builder: (context) => PinLocationScreen()),
+    );
+    updateInformation(information);
   }
 
   @override
@@ -83,6 +134,8 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
   @override
   Widget build(BuildContext context) {
     UiUtil.changeStatusColor(const Color.fromARGB(255, 67, 66, 73));
+    //ignore: close_sinks
+    final ValidateBloc _bloc = context.bloc<ValidateBloc>();
 
     return Scaffold(
       key: _scaffoldKey,
@@ -114,80 +167,90 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                             SizedBox(height: 10),
                             HorizontalLine(),
                             SizedBox(height: 10),
-                            Container(
-                              height: 35,
-                              child: TextField(
-                                style: textStyleWithLocale(context: context),
-                                controller: _titleController,
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.only(top: 0, bottom: 0),
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                    borderSide: BorderSide(
-                                      width: 0,
-                                      style: BorderStyle.none,
-                                    ),
-                                  ),
-                                  hintStyle: textStyleWithLocale(
-                                    context: context,
-                                    color: Color(0xff707070),
-                                  ),
-                                  hintText:
-                                      '${widget.address != null ? AppLocalizations.of(context).tr('client_app_title_address') : ''}',
-                                ),
-                              ),
-                            ),
+                            BlocBuilder<ValidateBloc, ValidateState>(builder:
+                                (BuildContext context, ValidateState state) {
+                              if (state is TitleAddressErrorState) {
+                                return BigRoundTextField(
+                                  hintText: 'Title Address',
+                                  controller: _titleController,
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc.add(
+                                        TitleAddressFieldEvent(value: value));
+                                    setState(() {
+                                      _titleAddress = value;
+                                    });
+                                  },
+                                  errorText: state.errorText,
+                                );
+                              } else {
+                                return BigRoundTextField(
+                                  hintText: 'Title Address',
+                                  controller: _titleController,
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc.add(
+                                        TitleAddressFieldEvent(value: value));
+                                    setState(() {
+                                      _titleAddress = value;
+                                    });
+                                  },
+                                );
+                              }
+                            }),
                             SizedBox(height: 10),
-                            Container(
-                              // height: 35,
-                              child: TextField(
-                                style: textStyleWithLocale(context: context),
-                                controller: _addressController,
-                                maxLines: 4,
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.only(top: 0, bottom: 0),
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                    borderSide: BorderSide(
-                                      width: 0,
-                                      style: BorderStyle.none,
-                                    ),
-                                  ),
-                                  hintStyle: textStyleWithLocale(
-                                    context: context,
-                                    color: Color(0xff707070),
-                                  ),
-                                  hintText:
-                                      '${widget.address != null ? AppLocalizations.of(context).tr('client_app_address') : ''}',
-                                ),
-                              ),
-                            ),
+                            BlocBuilder<ValidateBloc, ValidateState>(builder:
+                                (BuildContext context, ValidateState state) {
+                              if (state is AddressErrorState) {
+                                return BigRoundTextField(
+                                  hintText: 'Address',
+                                  maxLines: 4,
+                                  controller: _addressController,
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc.add(AddressFieldEvent(value: value));
+                                    setState(() {
+                                      _address = value;
+                                    });
+                                  },
+                                  errorText: state.errorText,
+                                );
+                              } else {
+                                return BigRoundTextField(
+                                  hintText: 'Address',
+                                  maxLines: 4,
+                                  controller: _addressController,
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc.add(AddressFieldEvent(value: value));
+                                    setState(() {
+                                      _address = value;
+                                    });
+                                  },
+                                );
+                              }
+                            }),
                             SizedBox(height: 10),
-                            CustomRoundButton(
-                              callback: () => Navigator.pop(context),
-                              child: Text(
-                                '${AppLocalizations.of(context).tr('client_app_btn_save')}',
-                                style: textStyleWithLocale(
-                                  context: context,
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              color: Theme.of(context).primaryColor,
-                              padding: EdgeInsets.symmetric(horizontal: 20),
+                            BigRoundButton(
+                              callback: !_check()
+                                  ? null
+                                  : () {
+                                      _saveData();
+                                      Navigator.pop(context);
+                                    },
+                              color: !_check()
+                                  ? Colors.grey
+                                  : Theme.of(context).primaryColor,
+                              textButton: 'บันทึก',
                             ),
                           ],
                         ),
                       ),
                       SizedBox(height: 20),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          moveToSecondPage();
+                        },
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           child: Container(

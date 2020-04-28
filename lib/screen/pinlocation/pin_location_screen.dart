@@ -25,13 +25,15 @@ class PinLocationScreen extends StatefulWidget {
 class _PinLocationScreenState extends State<PinLocationScreen> {
   // Global keys
   GlobalKey _googleMapKey = GlobalKey();
-  GlobalKey<AutoCompleteTextFieldState<Prediction>> _searchFieldKey = new GlobalKey();
+  GlobalKey<AutoCompleteTextFieldState<Prediction>> _searchFieldKey =
+      new GlobalKey();
 
   // Input controllers
   final _googleMapController = Completer<GoogleMapController>();
 
   // Google API
-  final _googleMapPlaces = new GoogleMapsPlaces(apiKey: Keys.GOOGLE_PLACES_API_KEY);
+  final _googleMapPlaces =
+      new GoogleMapsPlaces(apiKey: Keys.GOOGLE_PLACES_API_KEY);
   final _uuid = Uuid();
   String _placeAutocompleteSessionToken;
   Timer _placeAutocompleteDebounce;
@@ -55,9 +57,13 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
           GoogleMap(
             key: _googleMapKey,
             mapType: MapType.normal,
-            initialCameraPosition: widget.latitude != null && widget.longitude != null
-                ? CameraPosition(target: LatLng(widget.latitude, widget.longitude), zoom: 16)
-                : CameraPosition(target: LatLng(18.817132, 98.986681), zoom: 16),
+            initialCameraPosition:
+                widget.latitude != null && widget.longitude != null
+                    ? CameraPosition(
+                        target: LatLng(widget.latitude, widget.longitude),
+                        zoom: 16)
+                    : CameraPosition(
+                        target: LatLng(18.817132, 98.986681), zoom: 16),
             onMapCreated: (GoogleMapController controller) {
               _googleMapController.complete(controller);
             },
@@ -72,7 +78,8 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
               if (_placeAutocompleteDebounce?.isActive ?? false) {
                 _placeAutocompleteDebounce.cancel();
               }
-              _placeAutocompleteDebounce = Timer(const Duration(milliseconds: 500), () {
+              _placeAutocompleteDebounce =
+                  Timer(const Duration(milliseconds: 500), () {
                 _querySuggestions(text);
               });
             },
@@ -123,7 +130,9 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
       text,
       sessionToken: _placeAutocompleteSessionToken,
       language: 'th',
-      location: _currentLocation == null ? null : Location(_currentLocation.latitude, _currentLocation.longitude),
+      location: _currentLocation == null
+          ? null
+          : Location(_currentLocation.latitude, _currentLocation.longitude),
       radius: _currentLocation == null ? null : 50000,
     );
 
@@ -135,7 +144,8 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
       }
       _searchFieldKey.currentState.updateSuggestions(_suggestions);
     } else {
-      Toast.show(response.errorMessage, context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+      Toast.show(response.errorMessage, context,
+          duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
     }
   }
 
@@ -144,11 +154,14 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
   /// if success, move the map's camera to the location of the place.
   Future<void> _onSuggestionTap(Prediction prediction) async {
     // Query place details.
-    PlacesDetailsResponse response = await _googleMapPlaces.getDetailsByPlaceId(prediction.placeId, sessionToken: _placeAutocompleteSessionToken);
+    PlacesDetailsResponse response = await _googleMapPlaces.getDetailsByPlaceId(
+        prediction.placeId,
+        sessionToken: _placeAutocompleteSessionToken);
     if (response.isOkay) {
       _showLocationOnMap(response?.result?.geometry?.location);
     } else {
-      Toast.show(response.errorMessage, context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+      Toast.show(response.errorMessage, context,
+          duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
     }
 
     // Resets the session token UUID.
@@ -157,13 +170,16 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
 
   /// Returns the device's current location.
   Future<void> _fetchUserLocation() async {
-    GeolocationStatus geolocationStatus = await Geolocator().checkGeolocationPermissionStatus();
+    GeolocationStatus geolocationStatus =
+        await Geolocator().checkGeolocationPermissionStatus();
     switch (geolocationStatus) {
       case GeolocationStatus.granted:
-        _currentLocation = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+        _currentLocation = await Geolocator()
+            .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
         break;
       default:
-        _currentLocation = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
+        _currentLocation = await Geolocator()
+            .getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
     }
   }
 
@@ -171,7 +187,8 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
   _showLocationOnMap(Location location) async {
     if (location != null) {
       final GoogleMapController controller = await _googleMapController.future;
-      controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(location.lat, location.lng), zoom: 16)));
+      controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+          target: LatLng(location.lat, location.lng), zoom: 16)));
     }
   }
 
@@ -179,11 +196,14 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
   /// The location data is obtained from the center position of the map.
   Future<void> _goBack() async {
     final GoogleMapController controller = await _googleMapController.future;
-    final RenderBox mapRenderBox = _googleMapKey.currentContext.findRenderObject();
+    final RenderBox mapRenderBox =
+        _googleMapKey.currentContext.findRenderObject();
     final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
     final mapWidthInPixel = mapRenderBox.size.width * devicePixelRatio;
     final mapHeightInPixel = mapRenderBox.size.height * devicePixelRatio;
-    LatLng latLng = await controller.getLatLng(ScreenCoordinate(x: (mapWidthInPixel / 2).round(), y: (mapHeightInPixel / 2).round()));
+    LatLng latLng = await controller.getLatLng(ScreenCoordinate(
+        x: (mapWidthInPixel / 2).round(), y: (mapHeightInPixel / 2).round()));
+
     Navigator.pop(context, latLng);
   }
 }

@@ -14,6 +14,7 @@ class BigRoundTextField extends StatelessWidget {
   final Function onChanged;
   final bool enabled;
   final double marginTop;
+  final TextEditingController controller;
 
   const BigRoundTextField({
     Key key,
@@ -30,6 +31,7 @@ class BigRoundTextField extends StatelessWidget {
     this.enabled,
     this.errorText,
     this.marginTop = 0,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -42,6 +44,7 @@ class BigRoundTextField extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.3,
       margin: EdgeInsets.only(top: marginTop),
       child: TextFormField(
+        controller: controller,
         decoration: new InputDecoration(
           enabledBorder: border,
           disabledBorder: border,

@@ -57,3 +57,10 @@ class AddressErrorState extends ValidateState {
   @override
   List<Object> get props => null;
 }
+
+class TitleAddressErrorState extends ValidateState {
+  final String errorText;
+  TitleAddressErrorState({@required this.errorText});
+  @override
+  List<Object> get props => null;
+}

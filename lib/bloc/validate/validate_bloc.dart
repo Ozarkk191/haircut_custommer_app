@@ -68,5 +68,12 @@ class ValidateBloc extends Bloc<ValidateEvent, ValidateState> {
         yield AddressErrorState(errorText: 'Address can not empty.');
       }
     }
+
+    if (event is TitleAddressFieldEvent) {
+      yield ValidateInitialState();
+      if (event.value.isEmpty) {
+        yield TitleAddressErrorState(errorText: 'Title Address can not empty.');
+      }
+    }
   }
 }

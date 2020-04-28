@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_addresses.dart';
+import 'package:haircut_delivery/clientapp/models/address_model.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_address.dart';
 import 'package:haircut_delivery/clientapp/screens/address/client_app_add_address_page.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
@@ -11,8 +14,10 @@ import 'package:haircut_delivery/clientapp/ui/buttons/custom_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/horizontal_line.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
+import 'package:haircut_delivery/helpers/share_helper.dart';
 import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ClientAppPlaceListPage extends StatefulWidget {
   ClientAppPlaceListPage({Key key}) : super(key: key);
@@ -24,9 +29,24 @@ class ClientAppPlaceListPage extends StatefulWidget {
 class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  List<AddressModel> _list;
+  AddressModel _address;
   @override
   void initState() {
+    _loadSharedPrefs();
     super.initState();
+  }
+
+  _loadSharedPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String data = prefs.getString('address');
+    var body = json.decode(data);
+    AddressModel address = AddressModel.fromJson(json.decode(body));
+
+    setState(() {
+      _address = address;
+      _list.add(address);
+    });
   }
 
   @override
@@ -65,9 +85,9 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
                               ),
                             ],
                           ),
-                          children: clientAppAddresses
-                              .map((item) => _buildTilesItem(item))
-                              .toList(),
+                          children: <Widget>[
+                            // _buildTilesItem(_address),
+                          ],
                         ),
                       ),
                       HorizontalLine(),
@@ -115,7 +135,9 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
             callback: () => Navigator.push(
               context,
               SlideUpTransition(
-                child: ClientAppAddAddressPage(),
+                child: ClientAppAddAddressPage(
+                  typeAddress: AddressType.HOME.toString(),
+                ),
               ),
             ),
             child: Text(
@@ -139,7 +161,8 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
             callback: () => Navigator.push(
               context,
               SlideUpTransition(
-                child: ClientAppAddAddressPage(),
+                child: ClientAppAddAddressPage(
+                    typeAddress: AddressType.WORK.toString()),
               ),
             ),
             child: Text(
@@ -157,7 +180,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
     );
   }
 
-  Widget _buildTilesItem(ClientAppAddress address) {
+  Widget _buildTilesItem(AddressModel address) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5),
       child: Row(
@@ -191,7 +214,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
               context,
               SlideUpTransition(
                 child: ClientAppAddAddressPage(
-                  address: address,
+                  typeAddress: AddressType.HOME.toString(),
                 ),
               ),
             ),
