@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
@@ -21,6 +22,9 @@ import 'package:haircut_delivery/screen/pinlocation/pin_location_screen.dart';
 import 'package:haircut_delivery/ui/textfield/big_round_textfield.dart';
 import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../models/address_model.dart';
 
 class ClientAppAddAddressPage extends StatefulWidget {
   final ClientAppAddress address;
@@ -44,9 +48,24 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
 
   String _titleAddress = "";
   String _address = "";
+  List<String> _prefList = List<String>();
 
   double _latitude = 18.807268;
   double _longitude = 99.0159334;
+
+  _getCurrentLocation() {
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _latitude = position.latitude;
+        _longitude = position.longitude;
+      });
+    }).catchError((e) {
+      print(e);
+    });
+  }
 
   bool _check() {
     if (_titleAddress == "" || _address == "") {
@@ -56,7 +75,9 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
     }
   }
 
-  void _saveData() {
+  void _saveData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _prefList = prefs.getStringList('address');
     AddressModel value = AddressModel(
         addressType: widget.typeAddress,
         addressTitle: _titleAddress,
@@ -64,11 +85,14 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
         addressLat: _latitude,
         addressLon: _longitude);
 
-    SharedPref().save('address', json.encode(value));
+    _prefList.add(json.encode(value));
+    print('value to String ::  $_prefList');
+    SharedPref().save('address', _prefList);
   }
 
   void initState() {
     super.initState();
+    _getCurrentLocation();
     _createMarkerImageFromAsset(context);
     if (widget.address != null) {
       _titleController.text = widget.address.addressTitle;

@@ -15,12 +15,12 @@ class CategoryAvatarItem extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.only(right: 7, left: 7),
-      width: 90,
+      width: 70,
       child: Column(
         children: <Widget>[
           Container(
-            width: 80,
-            height: 80,
+            width: 70,
+            height: 70,
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
@@ -48,6 +48,7 @@ class CategoryAvatarItem extends StatelessWidget {
               context: context,
               height: 1,
             ),
+            textAlign: TextAlign.center,
             maxLines: 2,
           ),
         ],

@@ -3,18 +3,17 @@ import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
-import 'package:haircut_delivery/clientapp/datas/client_app_addresses.dart';
 import 'package:haircut_delivery/clientapp/models/address_model.dart';
-import 'package:haircut_delivery/clientapp/models/client_app_address.dart';
 import 'package:haircut_delivery/clientapp/screens/address/client_app_add_address_page.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_default_appbar.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/custom_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
+import 'package:haircut_delivery/clientapp/ui/item_listview/address_item.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/horizontal_line.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
-import 'package:haircut_delivery/helpers/share_helper.dart';
 import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,24 +28,50 @@ class ClientAppPlaceListPage extends StatefulWidget {
 class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<AddressModel> _list;
+  // List<AddressModel> _list;
+  List<String> _getList = List<String>();
+  List<AddressModel> _addList = List<AddressModel>();
   AddressModel _address;
+
+  Position _position;
+
   @override
   void initState() {
     _loadSharedPrefs();
+    _getCurrentLocation();
     super.initState();
+  }
+
+  _getCurrentLocation() {
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _position = position;
+      });
+    }).catchError((e) {
+      print(e);
+    });
   }
 
   _loadSharedPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String data = prefs.getString('address');
-    var body = json.decode(data);
-    AddressModel address = AddressModel.fromJson(json.decode(body));
+    _getList = prefs.getStringList('address');
 
-    setState(() {
-      _address = address;
-      _list.add(address);
-    });
+    print(_getList);
+    if (_getList.length != 0) {
+      _getList.forEach((item) {
+        var body = json.decode(item);
+        AddressModel address = AddressModel.fromJson(body);
+
+        setState(() {
+          _address = address;
+          _addList.add(address);
+          print('text :: ${_address.address}');
+        });
+      });
+    }
   }
 
   @override
@@ -86,7 +111,21 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
                             ],
                           ),
                           children: <Widget>[
-                            // _buildTilesItem(_address),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: _addList.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                if (_getList.length != 0) {
+                                  return AddressItem(
+                                    addressTitle: _addList[index].addressTitle,
+                                    address: _addList[index].address,
+                                  );
+                                } else {
+                                  return Container();
+                                }
+                              },
+                            )
                           ],
                         ),
                       ),
@@ -180,54 +219,9 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
     );
   }
 
-  Widget _buildTilesItem(AddressModel address) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        children: <Widget>[
-          Image.asset('assets/images/ic_home_2.png'),
-          SizedBox(width: 10),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    '${address.addressTitle}',
-                    style: textStyleWithLocale(
-                      context: context,
-                    ),
-                  ),
-                  Text(
-                    '${address.address}',
-                    style: textStyleWithLocale(
-                      context: context,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () => Navigator.push(
-              context,
-              SlideUpTransition(
-                child: ClientAppAddAddressPage(
-                  typeAddress: AddressType.HOME.toString(),
-                ),
-              ),
-            ),
-            child: Image.asset('assets/images/ic_edit.png'),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildGetCurrentLocation() {
     return InkWell(
-      onTap: () => Navigator.pop(context),
+      onTap: () => Navigator.pop(context, _position),
       child: ListTile(
         title: Row(
           children: <Widget>[

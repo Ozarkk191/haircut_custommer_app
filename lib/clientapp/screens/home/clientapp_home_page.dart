@@ -214,7 +214,6 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
 
   Widget _buildCouponSection() {
     return Container(
-      height: 380,
       padding: EdgeInsets.only(left: 10, right: 10, top: 20),
       color: Theme.of(context).primaryColor,
       child: Column(

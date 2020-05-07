@@ -27,8 +27,8 @@ class _ShopScreenState extends State<ShopScreen> {
 
   // Data
   Set<Marker> _markers = Set();
-  double _latitude;
-  double _longitude;
+  double latitude;
+  double longitude;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,8 @@ class _ShopScreenState extends State<ShopScreen> {
                   Expanded(
                     child: Text(
                       widget.shop.name,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(widget.shop.distance.toString() + " km"),
@@ -94,7 +95,8 @@ class _ShopScreenState extends State<ShopScreen> {
             ContentContainer(
               child: GoogleMap(
                 mapType: MapType.normal,
-                initialCameraPosition: CameraPosition(target: LatLng(18.817132, 98.986681), zoom: 16),
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(18.817132, 98.986681), zoom: 16),
                 markers: _markers,
                 onMapCreated: (GoogleMapController controller) {
                   _googleMapController.complete(controller);
@@ -128,7 +130,9 @@ class _ShopScreenState extends State<ShopScreen> {
                 Expanded(
                   child: Text(service.name, style: TextStyle(fontSize: 20)),
                 ),
-                Text("฿" + service.price.toString(), style: TextStyle(fontSize: 15, color: Theme.of(context).primaryColor)),
+                Text("฿" + service.price.toString(),
+                    style: TextStyle(
+                        fontSize: 15, color: Theme.of(context).primaryColor)),
               ],
             ),
             divider
@@ -153,14 +157,17 @@ class _ShopScreenState extends State<ShopScreen> {
   /// is not available, the last known location of the device will be used instead (if available).
   /// If no location available then do not show the marker.
   _setUpMapMarker() async {
-    GeolocationStatus geolocationStatus = await Geolocator().checkGeolocationPermissionStatus();
+    GeolocationStatus geolocationStatus =
+        await Geolocator().checkGeolocationPermissionStatus();
     switch (geolocationStatus) {
       case GeolocationStatus.granted:
-        Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+        Position position = await Geolocator()
+            .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
         _showLocationOnMap(position);
         break;
       default:
-        Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
+        Position position = await Geolocator()
+            .getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
         _showLocationOnMap(position);
     }
   }
@@ -173,14 +180,16 @@ class _ShopScreenState extends State<ShopScreen> {
         _markers.add(Marker(
           markerId: MarkerId('myLocation'),
           position: LatLng(position.latitude, position.longitude),
-          anchor: const Offset(0.5, 0.8), // For some reason Offset(0.5, 1.0) doesn't set the pin's leg at the exact position. Offset(0.5, 0.8) looks better.
+          anchor: const Offset(0.5,
+              0.8), // For some reason Offset(0.5, 1.0) doesn't set the pin's leg at the exact position. Offset(0.5, 0.8) looks better.
         ));
       });
-      _latitude = position.latitude;
-      _longitude = position.longitude;
+      latitude = position.latitude;
+      longitude = position.longitude;
 
       final GoogleMapController controller = await _googleMapController.future;
-      controller.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(position.latitude, position.longitude), zoom: 16)));
+      controller.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(
+          target: LatLng(position.latitude, position.longitude), zoom: 16)));
     }
   }
 }

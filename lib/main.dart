@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: [
             Locale('th', 'TH'),
-            // Locale('en', 'US'),
+            Locale('en', 'US'),
           ],
           locale: localizationData.savedLocale,
           // Returns a locale which will be used by the app

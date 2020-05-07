@@ -9,7 +9,6 @@ import 'package:haircut_delivery/clientapp/ui/buttons/big_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/text_line.dart';
 import 'package:haircut_delivery/model/user.dart';
 import 'package:haircut_delivery/ui/textfield/big_round_textfield.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -30,13 +29,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-  _getStringAddress() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    //Return String
-    String stringValue = prefs.getString('address_string') ?? "";
+  // _getStringAddress() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   //Return String
+  //   String stringValue = prefs.getString('address_string') ?? "";
 
-    return stringValue;
-  }
+  //   return stringValue;
+  // }
 
   @override
   void initState() {

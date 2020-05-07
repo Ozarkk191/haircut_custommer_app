@@ -1,25 +1,18 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:easy_localization/easy_localization_delegate.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_services.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_shops.dart';
-import 'package:haircut_delivery/clientapp/datas/service_categories.dart';
+import 'package:haircut_delivery/clientapp/datas/nearme_categories.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_service.dart';
-import 'package:haircut_delivery/clientapp/models/client_app_service_category.dart';
-import 'package:haircut_delivery/clientapp/models/client_app_shop.dart';
 import 'package:haircut_delivery/clientapp/screens/category/widgets/client_app_category_item.dart';
 import 'package:haircut_delivery/clientapp/screens/category/widgets/client_app_service_type_dialog_no_title.dart';
+import 'package:haircut_delivery/clientapp/screens/home/widgets/client_app_shop_item.dart';
 import 'package:haircut_delivery/clientapp/screens/near_me/widgets/category_avatar_item.dart';
-import 'package:haircut_delivery/clientapp/screens/near_me/widgets/near_me_service_item.dart';
 import 'package:haircut_delivery/clientapp/screens/place/client_app_place_list_page.dart';
-import 'package:haircut_delivery/clientapp/screens/profile/client_app_shop_profile_page.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_search_appbar.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/custom_round_button.dart';
@@ -40,15 +33,13 @@ class ClientAppNearMePage extends StatefulWidget {
 
 class _ClientAppNearMePageState extends State<ClientAppNearMePage>
     with AutomaticKeepAliveClientMixin<ClientAppNearMePage> {
-  Completer<GoogleMapController> _controller = Completer();
   @override
   bool get wantKeepAlive => true;
   ServiceType _serviceType = ServiceType.BOOKING;
   List<ClientAppService> nearMeServices;
 
-  // Global keys
-  GlobalKey _googleMapKey = GlobalKey();
-  Position _currentLocation;
+  LatLng latLng;
+
   GeolocationStatus geoStatus;
 
   @override
@@ -91,10 +82,8 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
         });
         break;
       case GeolocationStatus.granted:
-        Position currloc = await Geolocator().getCurrentPosition();
         setState(() {
           geoStatus = GeolocationStatus.granted;
-          _currentLocation = currloc;
         });
         break;
     }
@@ -119,51 +108,110 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
     Navigator.pop(context);
   }
 
-  void _handleSelectedCat({@required ClientAppServiceCategory service}) {
-    final services = clientAppServices.where((item) {
-      return item.parentCatId == service.categoryId;
-    }).toList();
+  // void _handleSelectedCat({@required ClientAppServiceCategory service}) {
+  //   final services = clientAppServices.where((item) {
+  //     return item.parentCatId == service.categoryId;
+  //   }).toList();
+  //   setState(() {
+  //     nearMeServices.clear();
+  //     nearMeServices.addAll(services);
+  //   });
+  // }
+
+  // void _goToPage({@required ClientAppShop shop, int rnd}) {
+  //   Navigator.push(
+  //     context,
+  //     SlideUpTransition(
+  //       child: ClientAppShopProfilePage(
+  //         shop: shop,
+  //         distance: rnd,
+  //         serviceType: _serviceType,
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  void updateInformation(Position position) {
     setState(() {
-      nearMeServices.clear();
-      nearMeServices.addAll(services);
+      latLng = LatLng(position.latitude, position.latitude);
+      print('value of latLng :: $latLng');
     });
   }
 
-  void _goToPage({@required ClientAppShop shop, int rnd}) {
-    Navigator.push(
+  void moveToSecondPage() async {
+    final currentPosition = await Navigator.push(
       context,
       SlideUpTransition(
-        child: ClientAppShopProfilePage(
-          shop: shop,
-          distance: rnd,
-          serviceType: _serviceType,
-        ),
+        child: ClientAppPlaceListPage(),
       ),
     );
+    updateInformation(currentPosition);
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Stack(children: <Widget>[
-      Container(
-        color: Colors.white,
-        child: Stack(
-          children: <Widget>[
-            _returnMap(),
-            Container(
-              margin: EdgeInsets.only(top: marketPlaceNavToolbar + 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  _buildCategory(),
-                  nearMeServices.length > 0
-                      ? _buildListView()
-                      : _noServiceAvailable(),
-                ],
+      SingleChildScrollView(
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: marketPlaceNavToolbar + 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    _buildCategory(),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Near Me (All)',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          width: 80,
+                          height: 30,
+                          child: RaisedButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Booking',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                          width: 80,
+                          height: 30,
+                          child: RaisedButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Delivery',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10),
+              _buildServiceItemList()
+            ],
+          ),
         ),
       ),
       Container(
@@ -171,57 +219,13 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
         child: ClientAppSearchAppBar(
           changeCallback: () => _showDialog(context: context),
           context: context,
-          navigatorCallback: () => Navigator.push(
-            context,
-            SlideUpTransition(
-              child: ClientAppPlaceListPage(),
-            ),
-          ),
+          navigatorCallback: () {
+            moveToSecondPage();
+          },
           serviceType: _serviceType,
         ),
       ),
     ]);
-  }
-
-  Widget _returnMap() {
-    Widget result;
-
-    if (_currentLocation == null && geoStatus == null) {
-      result = Center(
-        child: CircularProgressIndicator(),
-      );
-    } else if (_currentLocation != null &&
-        geoStatus == GeolocationStatus.granted) {
-      result = GoogleMap(
-        key: _googleMapKey,
-        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
-          Factory<OneSequenceGestureRecognizer>(
-            () => EagerGestureRecognizer(),
-          ),
-        ].toSet(),
-        myLocationEnabled: true,
-        mapType: MapType.normal,
-        initialCameraPosition: CameraPosition(
-          target: LatLng(_currentLocation.latitude, _currentLocation.longitude),
-          zoom: 16,
-        ),
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-      );
-    } else {
-      result = Center(
-        child: RaisedButton(
-          onPressed: _getPermission,
-          child: Text(
-            '${AppLocalizations.of(context).tr('client_app_please_enble_permission')}',
-            style: textStyleWithLocale(context: context),
-          ),
-        ),
-      );
-    }
-
-    return result;
   }
 
   Widget _buildCategory() {
@@ -229,62 +233,53 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
       height: 125,
       child: Row(
         children: <Widget>[
-          Icon(
-            Icons.chevron_left,
-            size: 35,
-          ),
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                  onTap: () =>
-                      _handleSelectedCat(service: serviceCategories[index]),
+                  onTap: () {},
                   child: CategoryAvatarItem(
-                    category: serviceCategories[index],
+                    category: nearmeCategories[index],
                   ),
                 );
               },
-              itemCount: serviceCategories.length,
+              itemCount: nearmeCategories.length,
             ),
-          ),
-          Icon(
-            Icons.chevron_right,
-            size: 35,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildListView() {
-    final random = Random();
-    final rnd = 1 + random.nextInt(12 - 1);
+  // Widget _buildListView() {
+  //   final random = Random();
+  //   final rnd = 1 + random.nextInt(12 - 1);
 
-    return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      height: 180,
-      width: double.infinity,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, int index) {
-          return InkWell(
-            onTap: () => _goToPage(
-              shop: clientAppShops.firstWhere(
-                  (item) => item.shopId == nearMeServices[index].shopId),
-              rnd: rnd,
-            ),
-            child: NearMeServiceItem(
-              service: nearMeServices[index],
-              rnd: rnd,
-            ),
-          );
-        },
-        itemCount: nearMeServices.length,
-      ),
-    );
-  }
+  //   return Container(
+  //     margin: EdgeInsets.only(bottom: 10),
+  //     height: 180,
+  //     width: double.infinity,
+  //     child: ListView.builder(
+  //       scrollDirection: Axis.horizontal,
+  //       itemBuilder: (BuildContext context, int index) {
+  //         return InkWell(
+  //           onTap: () => _goToPage(
+  //             shop: clientAppShops.firstWhere(
+  //                 (item) => item.shopId == nearMeServices[index].shopId),
+  //             rnd: rnd,
+  //           ),
+  //           child: NearMeServiceItem(
+  //             service: nearMeServices[index],
+  //             rnd: rnd,
+  //           ),
+  //         );
+  //       },
+  //       itemCount: nearMeServices.length,
+  //     ),
+  //   );
+  // }
 
   Widget _buildDialogContent({@required BuildContext context}) {
     return Column(
@@ -346,18 +341,38 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
     );
   }
 
-  Widget _noServiceAvailable() {
+  // Widget _noServiceAvailable() {
+  //   return Container(
+  //     color: Colors.white54,
+  //     width: double.infinity,
+  //     padding: EdgeInsets.symmetric(vertical: 20),
+  //     child: Text(
+  //       '${AppLocalizations.of(context).tr('client_app_no_services_available')}',
+  //       style: textStyleWithLocale(
+  //         context: context,
+  //         fontSize: 18,
+  //       ),
+  //       textAlign: TextAlign.center,
+  //     ),
+  //   );
+  // }
+
+  Widget _buildServiceItemList() {
     return Container(
-      color: Colors.white54,
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Text(
-        '${AppLocalizations.of(context).tr('client_app_no_services_available')}',
-        style: textStyleWithLocale(
-          context: context,
-          fontSize: 18,
-        ),
-        textAlign: TextAlign.center,
+      color: Colors.white,
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        primary: false,
+        itemBuilder: (BuildContext context, int index) {
+          return ClientAppServiceItem(
+            clientAppService: nearMeServices[index],
+            callback: () {},
+            shop: clientAppShops.firstWhere(
+                (item) => item.shopId == nearMeServices[index].shopId),
+          );
+        },
+        itemCount: nearMeServices.length,
       ),
     );
   }
