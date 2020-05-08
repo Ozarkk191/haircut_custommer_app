@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/big_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/text_back.dart';
 import 'package:haircut_delivery/clientapp/ui/textfield/big_round_textfield.dart';
@@ -11,9 +13,17 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
-  @override
-  void initState() {
-    super.initState();
+  String _password = "";
+  String _passwordRepeat = "";
+
+  bool _check() {
+    if (_password == "" || _passwordRepeat == "") {
+      return false;
+    } else if (_passwordRepeat != _password) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   @override
@@ -21,6 +31,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     // Set the status bar's color.
     UiUtil.changeStatusColor(Theme.of(context).primaryColor);
 
+    //ignore: close_sinks
+    final ValidateBloc _bloc = context.bloc<ValidateBloc>();
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -32,19 +44,79 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   fontWeight: FontWeight.bold, fontSize: 25, color: Colors.red),
             ),
           ),
-          BigRoundTextField(
-            hintText: 'Password',
-            marginTop: 20,
-          ),
-          BigRoundTextField(
-            hintText: 'Password (Repeat)',
-            marginTop: 20,
-          ),
+          BlocBuilder<ValidateBloc, ValidateState>(
+              builder: (BuildContext context, ValidateState state) {
+            if (state is PasswordErrorState) {
+              return BigRoundTextField(
+                marginTop: 20,
+                hintText: 'Password',
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                onChanged: (value) {
+                  _bloc.add(PasswordFieldEvent(value: value));
+                  setState(() {
+                    _password = value;
+                  });
+                },
+                errorText: state.errorText,
+              );
+            } else {
+              return BigRoundTextField(
+                marginTop: 20,
+                hintText: 'Password',
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                onChanged: (value) {
+                  _bloc.add(PasswordFieldEvent(value: value));
+                  setState(() {
+                    _password = value;
+                  });
+                },
+              );
+            }
+          }),
+          BlocBuilder<ValidateBloc, ValidateState>(
+              builder: (BuildContext context, ValidateState state) {
+            if (state is RepeatPasswordErrorState) {
+              return BigRoundTextField(
+                marginTop: 20,
+                hintText: 'Password(Repeat)',
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                onChanged: (value) {
+                  _bloc.add(RepeatPasswordFieldEvent(
+                    repeat: value,
+                    password: _password,
+                  ));
+                  setState(() {
+                    _passwordRepeat = value;
+                  });
+                },
+                errorText: state.errorText,
+              );
+            } else {
+              return BigRoundTextField(
+                marginTop: 20,
+                hintText: 'Password(Repeat)',
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                onChanged: (value) {
+                  _bloc.add(RepeatPasswordFieldEvent(
+                    repeat: value,
+                    password: _password,
+                  ));
+                  setState(() {
+                    _passwordRepeat = value;
+                  });
+                },
+              );
+            }
+          }),
           SizedBox(height: 20),
           BigRoundButton(
             textButton: 'Submit',
-            callback: () {},
-            color: Colors.white,
+            callback: !_check() ? null : () {},
+            color: !_check() ? Colors.grey : Color(0xffdd133b),
           ),
         ],
       ),

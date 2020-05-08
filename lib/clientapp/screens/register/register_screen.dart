@@ -313,8 +313,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               SizedBox(height: 30),
                               BigRoundButton(
                                 callback: !_check() ? null : () {},
-                                textButton: 'LOGIN',
-                                color: Color(0xffdd133b),
+                                textButton: 'Register',
+                                color:
+                                    !_check() ? Colors.grey : Color(0xffdd133b),
                               ),
                             ],
                           ),

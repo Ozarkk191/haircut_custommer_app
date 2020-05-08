@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
 import 'package:haircut_delivery/clientapp/screens/resetpassword/reset_password.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/big_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/text_back.dart';
@@ -12,13 +14,13 @@ class ForgotPasswordOtpScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  String _phone = "";
 
   @override
   Widget build(BuildContext context) {
+    //ignore: close_sinks
+    final ValidateBloc _bloc = context.bloc<ValidateBloc>();
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -30,14 +32,40 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
               textAlign: TextAlign.center,
             ),
           ),
-          BigRoundTextField(
-            hintText: 'Number Phone',
-            marginTop: 20,
-          ),
+          BlocBuilder<ValidateBloc, ValidateState>(
+              builder: (BuildContext context, ValidateState state) {
+            if (state is PhoneErrorState) {
+              return BigRoundTextField(
+                marginTop: 20,
+                hintText: 'Phone Number',
+                keyboardType: TextInputType.phone,
+                onChanged: (value) {
+                  _bloc.add(PhoneNumberFieldEvent(value: value));
+                  setState(() {
+                    _phone = value;
+                  });
+                },
+                errorText: state.errorText,
+              );
+            } else {
+              return BigRoundTextField(
+                marginTop: 20,
+                hintText: 'Phone Number',
+                keyboardType: TextInputType.phone,
+                onChanged: (value) {
+                  _bloc.add(PhoneNumberFieldEvent(value: value));
+                  setState(() {
+                    _phone = value;
+                  });
+                },
+              );
+            }
+          }),
+          SizedBox(height: 20),
           BigRoundButton(
             textButton: 'Request OTP',
-            callback: () {},
-            color: Color(0xffcccccc),
+            callback: _phone == "" ? null : () {},
+            color: _phone == "" ? Color(0xffcccccc) : Color(0xffdd133b),
           ),
           Container(
             margin: EdgeInsets.only(top: 100),
@@ -48,6 +76,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
               pinBoxRadius: 10,
               wrapAlignment: WrapAlignment.center,
               pinBoxColor: Color(0xffeeeeee),
+              defaultBorderColor: Color(0xffeeeeee),
               pinTextStyle: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

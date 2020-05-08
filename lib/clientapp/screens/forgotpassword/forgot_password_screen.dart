@@ -27,6 +27,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 20),
           BigRoundButton(
             textButton: 'OTP',
             callback: () {
@@ -37,6 +38,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             },
             color: Color(0xffdd133b),
           ),
+          SizedBox(height: 20),
           BigRoundButton(
             textButton: 'Email',
             callback: () {
