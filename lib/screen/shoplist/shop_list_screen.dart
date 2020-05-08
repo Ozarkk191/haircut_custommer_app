@@ -2,15 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:haircut_delivery/bloc/home_banner_bloc.dart';
-import 'package:haircut_delivery/bloc/service_bloc.dart';
-import 'package:haircut_delivery/bloc/shop_list_bloc.dart';
+import 'package:haircut_delivery/clientapp/ui/loading_screen.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/model/api_response.dart';
 import 'package:haircut_delivery/model/home_banner.dart';
 import 'package:haircut_delivery/model/service.dart';
 import 'package:haircut_delivery/screen/servicelist/service_list_screen.dart';
-import 'package:haircut_delivery/ui/loading_screen.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ShopListScreen extends StatefulWidget {
@@ -23,11 +20,6 @@ class ShopListScreen extends StatefulWidget {
 }
 
 class _ShopListScreenState extends State<ShopListScreen> {
-  // BLoC
-  final _shopListBloc = ShopListBloc();
-  final _homeBannerBloc = HomeBannerBloc();
-  final _serviceBloc = ServiceBloc();
-
   // Constant
   final _serviceNameTextStyle = TextStyle(fontSize: 15);
 
@@ -37,17 +29,8 @@ class _ShopListScreenState extends State<ShopListScreen> {
   @override
   void initState() {
     super.initState();
-
     // Fetch saved my location.
     _fetchMyLocation();
-  }
-
-  @override
-  void dispose() {
-    _shopListBloc.dispose();
-    _homeBannerBloc.dispose();
-    _serviceBloc.dispose();
-    super.dispose();
   }
 
   @override
@@ -75,7 +58,8 @@ class _ShopListScreenState extends State<ShopListScreen> {
     final myLocationLongitude = prefs.getDouble('myLongitude');
     if (myLocationLatitude != null && myLocationLongitude != null) {
       setState(() {
-        _myLocationName = myLocationName ?? AppLocalizations.of(context).tr('home_current_location');
+        _myLocationName = myLocationName ??
+            AppLocalizations.of(context).tr('home_current_location');
       });
     } else {
       setState(() {
@@ -87,7 +71,6 @@ class _ShopListScreenState extends State<ShopListScreen> {
   /// Builds the banner slider.
   Widget _buildBannerSlider() {
     return StreamBuilder<ApiResponse<List<HomeBanner>>>(
-      stream: _homeBannerBloc.homeBannerListStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           switch (snapshot.data.status) {
@@ -122,10 +105,13 @@ class _ShopListScreenState extends State<ShopListScreen> {
     return Container(
       decoration: BoxDecoration(color: Theme.of(context).primaryColor),
       child: Container(
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30))),
         height: 265,
         child: StreamBuilder<ApiResponse<List<Service>>>(
-          stream: _serviceBloc.serviceListStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data?.data != null) {
@@ -140,19 +126,42 @@ class _ShopListScreenState extends State<ShopListScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              _buildServiceColumn(index * 8 < servicesCount ? services[(index * 8)] : null),
-                              _buildServiceColumn((index * 8) + 1 < servicesCount ? services[(index * 8) + 1] : null),
-                              _buildServiceColumn((index * 8) + 2 < servicesCount ? services[(index * 8) + 2] : null),
-                              _buildServiceColumn((index * 8) + 3 < servicesCount ? services[(index * 8) + 3] : null),
+                              _buildServiceColumn(index * 8 < servicesCount
+                                  ? services[(index * 8)]
+                                  : null),
+                              _buildServiceColumn(
+                                  (index * 8) + 1 < servicesCount
+                                      ? services[(index * 8) + 1]
+                                      : null),
+                              _buildServiceColumn(
+                                  (index * 8) + 2 < servicesCount
+                                      ? services[(index * 8) + 2]
+                                      : null),
+                              _buildServiceColumn(
+                                  (index * 8) + 3 < servicesCount
+                                      ? services[(index * 8) + 3]
+                                      : null),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              _buildServiceColumn((index * 8) + 4 < servicesCount ? services[(index * 8) + 4] : null),
-                              _buildServiceColumn((index * 8) + 5 < servicesCount ? services[(index * 8) + 5] : null),
-                              _buildServiceColumn((index * 8) + 6 < servicesCount ? services[(index * 8) + 6] : null),
-                              _buildServiceColumn((index * 8) + 7 < servicesCount ? services[(index * 8) + 7] : null),
+                              _buildServiceColumn(
+                                  (index * 8) + 4 < servicesCount
+                                      ? services[(index * 8) + 4]
+                                      : null),
+                              _buildServiceColumn(
+                                  (index * 8) + 5 < servicesCount
+                                      ? services[(index * 8) + 5]
+                                      : null),
+                              _buildServiceColumn(
+                                  (index * 8) + 6 < servicesCount
+                                      ? services[(index * 8) + 6]
+                                      : null),
+                              _buildServiceColumn(
+                                  (index * 8) + 7 < servicesCount
+                                      ? services[(index * 8) + 7]
+                                      : null),
                             ],
                           )
                         ],
@@ -178,7 +187,11 @@ class _ShopListScreenState extends State<ShopListScreen> {
       return Expanded(
         child: InkWell(
           onTap: () {
-            Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) => new ServiceListScreen(service: service)));
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        new ServiceListScreen(service: service)));
           },
           child: Padding(
             padding: EdgeInsets.all(10),

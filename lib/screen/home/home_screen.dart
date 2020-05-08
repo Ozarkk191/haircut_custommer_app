@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:haircut_delivery/clientapp/ui/curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:haircut_delivery/clientapp/ui/drawer.dart';
 import 'package:haircut_delivery/screen/home/account_page.dart';
 import 'package:haircut_delivery/screen/home/home_page.dart';
-import 'package:haircut_delivery/screen/home/near_me_page.dart';
-import 'package:haircut_delivery/ui/curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:haircut_delivery/ui/drawer.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -60,7 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             },
             children: <Widget>[
-              NearMePage(),
               Container(color: Colors.cyan),
               HomePage(scaffoldKey: _scaffoldKey),
               Container(color: Colors.grey),
@@ -90,7 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: (index) {
             setState(() {
               _currentPage = index;
-              _pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+              _pageController.animateToPage(index,
+                  duration: Duration(milliseconds: 500), curve: Curves.ease);
             });
           },
         ),

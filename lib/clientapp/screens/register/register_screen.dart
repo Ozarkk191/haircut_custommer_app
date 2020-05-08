@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/big_round_button.dart';
+import 'package:haircut_delivery/clientapp/ui/textfield/big_round_textfield.dart';
+import 'package:haircut_delivery/clientapp/ui/title.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/model/user.dart';
-import 'package:haircut_delivery/ui/textfield/big_round_textfield.dart';
-import 'package:haircut_delivery/ui/title.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 
 /// Register screen.

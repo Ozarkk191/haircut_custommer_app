@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
+import 'package:haircut_delivery/clientapp/ui/buttons/button.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/config/keys.dart';
-import 'package:haircut_delivery/ui/button.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:toast/toast.dart';
 import 'package:uuid/uuid.dart';
 

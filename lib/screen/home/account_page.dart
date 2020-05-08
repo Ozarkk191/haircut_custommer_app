@@ -2,12 +2,11 @@ import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:haircut_delivery/bloc/user_bloc.dart';
+import 'package:haircut_delivery/clientapp/ui/loading_screen.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/model/api_response.dart';
 import 'package:haircut_delivery/model/user.dart';
 import 'package:haircut_delivery/screen/profile/profile_screen.dart';
-import 'package:haircut_delivery/ui/loading_screen.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 
 class AccountPage extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -20,12 +19,8 @@ class AccountPage extends StatefulWidget {
 
 class _AccountPageState extends State<AccountPage>
     with AutomaticKeepAliveClientMixin<AccountPage> {
-  // BLoC
-  final _bloc = UserBloc();
-
   @override
   void dispose() {
-    _bloc.dispose();
     super.dispose();
   }
 
@@ -43,7 +38,6 @@ class _AccountPageState extends State<AccountPage>
             Padding(
               padding: const EdgeInsets.all(15),
               child: StreamBuilder<ApiResponse<User>>(
-                stream: _bloc.userStream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData && snapshot.data.data != null) {
                     final user = snapshot.data.data;

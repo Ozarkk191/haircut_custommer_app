@@ -3,7 +3,7 @@ import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_default_appbar.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 
 class ClientAppContentPage extends StatelessWidget {

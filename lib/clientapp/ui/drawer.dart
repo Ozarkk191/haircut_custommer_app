@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_version/get_version.dart';
+import 'package:haircut_delivery/clientapp/screens/login/login_screen.dart';
+import 'package:haircut_delivery/clientapp/ui/buttons/button.dart';
+import 'package:haircut_delivery/clientapp/ui/dialog.dart';
 import 'package:haircut_delivery/repository/user_repository.dart';
-import 'package:haircut_delivery/screen/login/login_screen.dart';
-import 'package:haircut_delivery/ui/button.dart';
-import 'package:haircut_delivery/ui/dialog.dart';
 
 /// Primary drawer.
 class PrimaryDrawer extends StatelessWidget {
@@ -57,7 +57,8 @@ class PrimaryDrawer extends StatelessWidget {
                           future: _fetchAppVersion(),
                           builder: (context, snapshot) {
                             if (snapshot.data != null) {
-                              return Text(AppLocalizations.of(context).tr('app_version', args: [snapshot.data]));
+                              return Text(AppLocalizations.of(context)
+                                  .tr('app_version', args: [snapshot.data]));
                             }
                             return Container();
                           }),
@@ -66,13 +67,15 @@ class PrimaryDrawer extends StatelessWidget {
                         child: SizedBox(
                           width: double.infinity,
                           child: PrimaryButton(
-                            text: AppLocalizations.of(context).tr('menu_log_out'),
+                            text:
+                                AppLocalizations.of(context).tr('menu_log_out'),
                             onPressed: () {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return ConfirmDialog(
-                                    message: AppLocalizations.of(context).tr('message_confirm_log_out'),
+                                    message: AppLocalizations.of(context)
+                                        .tr('message_confirm_log_out'),
                                     onConfirmed: () {
                                       _logOut(context);
                                     },
@@ -109,5 +112,7 @@ Future<String> _fetchAppVersion() async {
 /// Logs out.
 Future _logOut(BuildContext context) async {
   await UserRepository.logOut();
-  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginScreen()), (Route<dynamic> route) => false);
+  Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+      (Route<dynamic> route) => false);
 }

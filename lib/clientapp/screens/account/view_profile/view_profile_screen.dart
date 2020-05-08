@@ -5,8 +5,8 @@ import 'package:haircut_delivery/clientapp/screens/account/edit_profile/edit_pro
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_normal_appbar.dart';
 import 'package:haircut_delivery/clientapp/ui/avatar/custom_circle_avatar.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/text_edit_line.dart';
+import 'package:haircut_delivery/clientapp/ui/textfield/big_round_textfield.dart';
 import 'package:haircut_delivery/model/user.dart';
-import 'package:haircut_delivery/ui/textfield/big_round_textfield.dart';
 
 class ViewProfileScreen extends StatefulWidget {
   @override

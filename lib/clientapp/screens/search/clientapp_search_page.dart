@@ -10,9 +10,8 @@ import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_default_appbar.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/custom_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/horizontal_line.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
-
-import 'package:haircut_delivery/ui/tool_bar.dart';
 
 class ClientAppSearchPage extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;

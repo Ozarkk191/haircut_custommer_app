@@ -13,8 +13,8 @@ import 'package:haircut_delivery/clientapp/ui/appbar/client_app_default_appbar.d
 import 'package:haircut_delivery/clientapp/ui/buttons/custom_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/horizontal_line.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 
 class ClientAppConfirmPage extends StatefulWidget {

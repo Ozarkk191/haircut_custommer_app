@@ -12,15 +12,15 @@ import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/models/address_model.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_address.dart';
+import 'package:haircut_delivery/clientapp/screens/pinlocation/pin_location_screen.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_default_appbar.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/big_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/horizontal_line.dart';
+import 'package:haircut_delivery/clientapp/ui/textfield/big_round_textfield.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/helpers/share_helper.dart';
-import 'package:haircut_delivery/screen/pinlocation/pin_location_screen.dart';
-import 'package:haircut_delivery/ui/textfield/big_round_textfield.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -78,16 +78,26 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
   void _saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _prefList = prefs.getStringList('address');
-    AddressModel value = AddressModel(
+    // AddressModel value = AddressModel(
+    //   addressType: '5555555',
+    //   addressTitle: '99999',
+    //   address: '666666',
+    //   addressLat: 111111111.00,
+    //   addressLon: 2222222.00,
+    // );
+
+    setState(() {
+      AddressModel value = AddressModel(
         addressType: widget.typeAddress,
         addressTitle: _titleAddress,
         address: _address,
         addressLat: _latitude,
-        addressLon: _longitude);
-
-    _prefList.add(json.encode(value));
-    print('value to String ::  $_prefList');
-    SharedPref().save('address', _prefList);
+        addressLon: _longitude,
+      );
+      _prefList.add(json.encode(value));
+      print('value to String ::  $_prefList');
+      SharedPref().save('address', _prefList);
+    });
   }
 
   void initState() {

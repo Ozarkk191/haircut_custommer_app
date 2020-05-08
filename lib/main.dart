@@ -57,18 +57,18 @@ class MyApp extends StatelessWidget {
             primaryColor: const Color(0xFFDD133B),
             accentColor: const Color(0xFFDD133B),
             fontFamily: 'Montserrat',
-            textTheme: TextTheme(
-              headline: TextStyle(
-                  fontSize: 72,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF444444)),
-              title: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF444444)),
-              body1: TextStyle(
-                  fontSize: 15, fontFamily: 'Hind', color: Color(0xFF444444)),
-            ),
+            // textTheme: TextTheme(
+            //   headline6: TextStyle(
+            //       fontSize: 72,
+            //       fontWeight: FontWeight.bold,
+            //       color: Color(0xFF444444)),
+            //   subtitle1: TextStyle(
+            //       fontSize: 36,
+            //       fontWeight: FontWeight.bold,
+            //       color: Color(0xFF444444)),
+            //   bodyText1: TextStyle(
+            //       fontSize: 15, fontFamily: 'Hind', color: Color(0xFF444444)),
+            // ),
           ),
           // home: SplashScreen(),
           home: ClientAppSplashScreen(),

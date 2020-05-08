@@ -13,8 +13,8 @@ import 'package:haircut_delivery/clientapp/ui/buttons/custom_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
 import 'package:haircut_delivery/clientapp/ui/item_listview/address_item.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/horizontal_line.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -59,8 +59,8 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _getList = prefs.getStringList('address');
 
-    print(_getList);
-    if (_getList.length != 0) {
+    print('place :: $_getList');
+    if (_getList != null) {
       _getList.forEach((item) {
         var body = json.decode(item);
         AddressModel address = AddressModel.fromJson(body);

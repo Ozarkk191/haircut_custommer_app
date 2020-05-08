@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization_delegate.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_services.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_shops.dart';
@@ -17,7 +16,6 @@ import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_search_appbar.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/custom_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class ClientAppNearMePage extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -38,56 +36,56 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
   ServiceType _serviceType = ServiceType.BOOKING;
   List<ClientAppService> nearMeServices;
 
-  LatLng latLng;
-
   GeolocationStatus geoStatus;
+
+  String _categoryStatus = "Near Me (All)";
 
   @override
   void initState() {
     super.initState();
-    _getPermission();
+    // _getPermission();
     nearMeServices = [];
     final _services =
         clientAppServices.where((item) => item.parentCatId == 102).toList();
     nearMeServices.addAll(_services);
   }
 
-  _getPermission() async {
-    PermissionStatus permission = await PermissionHandler()
-        .checkPermissionStatus(PermissionGroup.location);
-    if (permission == PermissionStatus.denied) {
-      await PermissionHandler()
-          .requestPermissions([PermissionGroup.locationAlways]);
-    }
+  // _getPermission() async {
+  //   PermissionStatus permission = await PermissionHandler()
+  //       .checkPermissionStatus(PermissionGroup.location);
+  //   if (permission == PermissionStatus.denied) {
+  //     await PermissionHandler()
+  //         .requestPermissions([PermissionGroup.locationAlways]);
+  //   }
 
-    var geolocator = Geolocator();
-    GeolocationStatus geolocationStatus =
-        await geolocator.checkGeolocationPermissionStatus();
+  //   var geolocator = Geolocator();
+  //   GeolocationStatus geolocationStatus =
+  //       await geolocator.checkGeolocationPermissionStatus();
 
-    switch (geolocationStatus) {
-      case GeolocationStatus.denied:
-        setState(() {
-          geoStatus = GeolocationStatus.denied;
-        });
-        break;
-      case GeolocationStatus.disabled:
-      case GeolocationStatus.restricted:
-        setState(() {
-          geoStatus = GeolocationStatus.restricted;
-        });
-        break;
-      case GeolocationStatus.unknown:
-        setState(() {
-          geoStatus = GeolocationStatus.unknown;
-        });
-        break;
-      case GeolocationStatus.granted:
-        setState(() {
-          geoStatus = GeolocationStatus.granted;
-        });
-        break;
-    }
-  }
+  //   switch (geolocationStatus) {
+  //     case GeolocationStatus.denied:
+  //       setState(() {
+  //         geoStatus = GeolocationStatus.denied;
+  //       });
+  //       break;
+  //     case GeolocationStatus.disabled:
+  //     case GeolocationStatus.restricted:
+  //       setState(() {
+  //         geoStatus = GeolocationStatus.restricted;
+  //       });
+  //       break;
+  //     case GeolocationStatus.unknown:
+  //       setState(() {
+  //         geoStatus = GeolocationStatus.unknown;
+  //       });
+  //       break;
+  //     case GeolocationStatus.granted:
+  //       setState(() {
+  //         geoStatus = GeolocationStatus.granted;
+  //       });
+  //       break;
+  //   }
+  // }
 
   void _showDialog({@required BuildContext context}) {
     showDialog(
@@ -108,44 +106,13 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
     Navigator.pop(context);
   }
 
-  // void _handleSelectedCat({@required ClientAppServiceCategory service}) {
-  //   final services = clientAppServices.where((item) {
-  //     return item.parentCatId == service.categoryId;
-  //   }).toList();
-  //   setState(() {
-  //     nearMeServices.clear();
-  //     nearMeServices.addAll(services);
-  //   });
-  // }
-
-  // void _goToPage({@required ClientAppShop shop, int rnd}) {
-  //   Navigator.push(
-  //     context,
-  //     SlideUpTransition(
-  //       child: ClientAppShopProfilePage(
-  //         shop: shop,
-  //         distance: rnd,
-  //         serviceType: _serviceType,
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  void updateInformation(Position position) {
-    setState(() {
-      latLng = LatLng(position.latitude, position.latitude);
-      print('value of latLng :: $latLng');
-    });
-  }
-
   void moveToSecondPage() async {
-    final currentPosition = await Navigator.push(
+    Navigator.push(
       context,
       SlideUpTransition(
         child: ClientAppPlaceListPage(),
       ),
     );
-    updateInformation(currentPosition);
   }
 
   @override
@@ -173,7 +140,7 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      'Near Me (All)',
+                      _categoryStatus,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Row(
@@ -239,7 +206,10 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    _categoryStatus =
+                        "Near Me (${nearmeCategories[index].categoryNameTH})";
+                  },
                   child: CategoryAvatarItem(
                     category: nearmeCategories[index],
                   ),

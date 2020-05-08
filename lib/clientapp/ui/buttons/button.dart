@@ -21,7 +21,8 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       child: Text(text, style: TextStyle(fontSize: BUTTON_FONT_SIZE)),
-      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(BUTTON_BORDER_RADIUS)),
+      shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(BUTTON_BORDER_RADIUS)),
       color: Theme.of(context).primaryColor,
       disabledColor: DISABLE_COLOR,
       textColor: Colors.white,
@@ -49,7 +50,8 @@ class BlueButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       child: Text(text, style: TextStyle(fontSize: BUTTON_FONT_SIZE)),
-      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(BUTTON_BORDER_RADIUS)),
+      shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(BUTTON_BORDER_RADIUS)),
       color: const Color(0xFF4167B2),
       disabledColor: DISABLE_COLOR,
       textColor: Colors.white,
@@ -77,7 +79,8 @@ class DarkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       child: Text(text, style: TextStyle(fontSize: BUTTON_FONT_SIZE)),
-      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(BUTTON_BORDER_RADIUS)),
+      shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(BUTTON_BORDER_RADIUS)),
       color: const Color(0xFF444444),
       disabledColor: DISABLE_COLOR,
       textColor: Colors.white,
@@ -105,7 +108,8 @@ class GrayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       child: Text(text, style: TextStyle(fontSize: BUTTON_FONT_SIZE)),
-      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(BUTTON_BORDER_RADIUS)),
+      shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(BUTTON_BORDER_RADIUS)),
       color: const Color(0xFFEFEFEF),
       disabledColor: DISABLE_COLOR,
       textColor: Color(0xFF707070),

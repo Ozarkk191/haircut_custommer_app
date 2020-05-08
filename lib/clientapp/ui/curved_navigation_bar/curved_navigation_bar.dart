@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:haircut_delivery/ui/curved_navigation_bar/nav_button.dart';
-import 'package:haircut_delivery/ui/curved_navigation_bar/nav_custom_painter.dart';
+import 'package:haircut_delivery/clientapp/ui/curved_navigation_bar/nav_button.dart';
+import 'package:haircut_delivery/clientapp/ui/curved_navigation_bar/nav_custom_painter.dart';
 import 'package:meta/meta.dart';
 
 class CurvedNavigationBar extends StatefulWidget {
@@ -41,7 +41,8 @@ class CurvedNavigationBar extends StatefulWidget {
   CurvedNavigationBarState createState() => CurvedNavigationBarState();
 }
 
-class CurvedNavigationBarState extends State<CurvedNavigationBar> with SingleTickerProviderStateMixin {
+class CurvedNavigationBarState extends State<CurvedNavigationBar>
+    with SingleTickerProviderStateMixin {
   double _startingPos;
   int _endingIndex = 0;
   double _pos;
@@ -69,11 +70,16 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar> with SingleTic
         if ((endingPos - _pos).abs() < (_startingPos - _pos).abs()) {
           _icon = widget.items[_endingIndex];
         }
-        _buttonHide = (1 - ((middle - _pos) / (_startingPos - middle)).abs()).abs();
+        _buttonHide =
+            (1 - ((middle - _pos) / (_startingPos - middle)).abs()).abs();
       });
     });
-    _activeTextStyle = TextStyle(color: widget.activeColor, fontSize: 12, fontWeight: FontWeight.bold);
-    _inactiveTextStyle = TextStyle(color: widget.inactiveColor, fontSize: 12, fontWeight: FontWeight.normal);
+    _activeTextStyle = TextStyle(
+        color: widget.activeColor, fontSize: 12, fontWeight: FontWeight.bold);
+    _inactiveTextStyle = TextStyle(
+        color: widget.inactiveColor,
+        fontSize: 12,
+        fontWeight: FontWeight.normal);
     _selectedIndex = widget.index;
   }
 
@@ -84,7 +90,8 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar> with SingleTic
       final newPosition = widget.index / _length;
       _startingPos = _pos;
       _endingIndex = widget.index;
-      _animationController.animateTo(newPosition, duration: widget.animationDuration, curve: widget.animationCurve);
+      _animationController.animateTo(newPosition,
+          duration: widget.animationDuration, curve: widget.animationCurve);
     }
   }
 
@@ -106,8 +113,12 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar> with SingleTic
         children: <Widget>[
           Positioned(
             bottom: -40 - (75.0 - widget.height),
-            left: Directionality.of(context) == TextDirection.rtl ? null : _pos * size.width,
-            right: Directionality.of(context) == TextDirection.rtl ? _pos * size.width : null,
+            left: Directionality.of(context) == TextDirection.rtl
+                ? null
+                : _pos * size.width,
+            right: Directionality.of(context) == TextDirection.rtl
+                ? _pos * size.width
+                : null,
             width: size.width / _length,
             child: Center(
               child: Transform.translate(
@@ -128,7 +139,8 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar> with SingleTic
             right: 0,
             bottom: 0 - (75.0 - widget.height),
             child: CustomPaint(
-              painter: NavCustomPainter(_pos, _length, widget.color, Directionality.of(context)),
+              painter: NavCustomPainter(
+                  _pos, _length, widget.color, Directionality.of(context)),
               child: Container(height: 75.0),
             ),
           ),
@@ -160,7 +172,9 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar> with SingleTic
                     child: Text(
                       item,
                       textAlign: TextAlign.center,
-                      style: widget.labels.indexOf(item) == _selectedIndex ? _activeTextStyle : _inactiveTextStyle,
+                      style: widget.labels.indexOf(item) == _selectedIndex
+                          ? _activeTextStyle
+                          : _inactiveTextStyle,
                     ),
                   );
                 }).toList()),
@@ -182,7 +196,8 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar> with SingleTic
     setState(() {
       _startingPos = _pos;
       _endingIndex = index;
-      _animationController.animateTo(newPosition, duration: widget.animationDuration, curve: widget.animationCurve);
+      _animationController.animateTo(newPosition,
+          duration: widget.animationDuration, curve: widget.animationCurve);
       _selectedIndex = index;
     });
   }

@@ -7,8 +7,8 @@ import 'package:haircut_delivery/clientapp/screens/content/client_app_content_pa
 import 'package:haircut_delivery/clientapp/screens/home/widgets/client_app_coupon_item.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_default_appbar.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 
 class ClientAppMyCouponPage extends StatelessWidget {

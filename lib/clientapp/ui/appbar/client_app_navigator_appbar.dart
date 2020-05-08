@@ -2,7 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
+
+import '../tool_bar.dart';
 
 class ClientAppNavigatorAppBar extends PreferredSize {
   final BuildContext context;

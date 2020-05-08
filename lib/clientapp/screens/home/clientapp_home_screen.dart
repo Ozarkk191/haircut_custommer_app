@@ -5,7 +5,7 @@ import 'package:haircut_delivery/clientapp/screens/home/clientapp_home_page.dart
 import 'package:haircut_delivery/clientapp/screens/near_me/client_app_near_me_page.dart';
 import 'package:haircut_delivery/clientapp/screens/search/clientapp_search_page.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
-import 'package:haircut_delivery/ui/curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:haircut_delivery/clientapp/ui/curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 
 import 'marketplace_home_page.dart';

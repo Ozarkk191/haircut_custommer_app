@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
+import 'package:haircut_delivery/clientapp/screens/forgotpassword/forgot_password_screen.dart';
+import 'package:haircut_delivery/clientapp/screens/register/register_screen.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/big_round_button.dart';
-import 'package:haircut_delivery/screen/forgotpassword/forgot_password_screen.dart';
-import 'package:haircut_delivery/screen/register/register_screen.dart';
-import 'package:haircut_delivery/ui/textfield/big_round_textfield.dart';
+import 'package:haircut_delivery/clientapp/ui/textfield/big_round_textfield.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 
 /// Login screen for logging in with normal login method or using Facebook login.

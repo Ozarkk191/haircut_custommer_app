@@ -1,8 +1,9 @@
+// import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_webservice/places.dart';
-import 'package:haircut_delivery/screen/myplacelist/my_place_list_screen.dart';
+import 'package:haircut_delivery/model/prediction.dart';
+// import 'package:google_maps_webservice/places.dart';
 
 const TOOL_BAR_HEIGHT = 65.0;
 
@@ -40,7 +41,11 @@ class PrimaryToolBar extends StatelessWidget {
       width: double.infinity,
       height: TOOL_BAR_HEIGHT,
       child: Container(
-        decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25))),
+        decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25))),
         child: Stack(
           children: <Widget>[
             Align(
@@ -85,16 +90,18 @@ class HomeToolBar extends StatelessWidget {
     return SizedBox(
       height: 65,
       child: Container(
-          decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25))),
+          decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25))),
           child: Padding(
             padding: EdgeInsets.only(left: 20, right: 10),
             child: Row(
               children: [
                 Expanded(
                   child: InkWell(
-                    onTap: () {
-                      Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) => new MyPlacesListScreen()));
-                    },
+                    onTap: () {},
                     child: Stack(
                       children: <Widget>[
                         Align(
@@ -104,7 +111,8 @@ class HomeToolBar extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
                               ),
                             ),
                           ),
@@ -121,12 +129,16 @@ class HomeToolBar extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 30, right: 10),
                             child: Text(
-                              locationName ?? AppLocalizations.of(context).tr('home_pin_location'),
+                              locationName ??
+                                  AppLocalizations.of(context)
+                                      .tr('home_pin_location'),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: TextStyle(
                                 fontSize: 16,
-                                color: Color(locationName != null ? 0xFF707070 : 0x66707070),
+                                color: Color(locationName != null
+                                    ? 0xFF707070
+                                    : 0x66707070),
                               ),
                             ),
                           ),
@@ -166,7 +178,13 @@ class PlaceAutocompleteToolBar extends StatelessWidget {
   final StringCallback onTextChanged;
   final InputEventCallback<Prediction> onItemSubmitted;
 
-  PlaceAutocompleteToolBar(this.suggestions, {this.searchFieldKey, this.onTextChanged, this.onItemSubmitted, this.hintText, Key key}) : super(key: key);
+  PlaceAutocompleteToolBar(this.suggestions,
+      {this.searchFieldKey,
+      this.onTextChanged,
+      this.onItemSubmitted,
+      this.hintText,
+      Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +196,11 @@ class PlaceAutocompleteToolBar extends StatelessWidget {
       width: double.infinity,
       height: TOOL_BAR_HEIGHT,
       child: Container(
-        decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25))),
+        decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25))),
         child: Stack(
           children: <Widget>[
             Align(
@@ -187,9 +209,7 @@ class PlaceAutocompleteToolBar extends StatelessWidget {
                 padding: EdgeInsets.only(left: 15),
                 child: IconButton(
                   icon: Image.asset('assets/images/ic_back.png'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  onPressed: () {},
                 ),
               ),
             ),
@@ -207,7 +227,8 @@ class PlaceAutocompleteToolBar extends StatelessWidget {
                     submitOnSuggestionTap: true,
                     clearOnSubmit: false,
                     itemBuilder: (context, suggestion) => new Padding(
-                      child: new ListTile(title: new Text(suggestion.description)),
+                      child:
+                          new ListTile(title: new Text(suggestion.description)),
                       padding: EdgeInsets.all(8.0),
                     ),
                     itemFilter: (suggestion, input) => true,
@@ -222,7 +243,8 @@ class PlaceAutocompleteToolBar extends StatelessWidget {
                       hintStyle: new TextStyle(color: const Color(0x88707070)),
                       hintText: hintText,
                       fillColor: const Color(0xFFEEEEEE),
-                      contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 15),
                     ),
                   ),
                 ),

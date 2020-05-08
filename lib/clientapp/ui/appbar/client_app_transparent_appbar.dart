@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
+
+import '../tool_bar.dart';
 
 class ClientAppTransparentAppBar extends PreferredSize {
   final BuildContext context;

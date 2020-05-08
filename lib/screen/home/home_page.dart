@@ -2,14 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:haircut_delivery/bloc/home_banner_bloc.dart';
-import 'package:haircut_delivery/bloc/service_bloc.dart';
+import 'package:haircut_delivery/clientapp/ui/loading_screen.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/model/api_response.dart';
 import 'package:haircut_delivery/model/home_banner.dart';
 import 'package:haircut_delivery/model/service.dart';
 import 'package:haircut_delivery/screen/servicelist/service_list_screen.dart';
-import 'package:haircut_delivery/ui/loading_screen.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,10 +21,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin<HomePage> {
-  // BLoC
-  final _homeBannerBloc = HomeBannerBloc();
-  final _serviceBloc = ServiceBloc();
-
   // Constant
   final _serviceNameTextStyle = TextStyle(fontSize: 15);
 
@@ -39,13 +33,6 @@ class _HomePageState extends State<HomePage>
 
     // Fetch saved my location.
     _fetchMyLocation();
-  }
-
-  @override
-  void dispose() {
-    _homeBannerBloc.dispose();
-    _serviceBloc.dispose();
-    super.dispose();
   }
 
   @override
@@ -90,7 +77,6 @@ class _HomePageState extends State<HomePage>
   /// Builds the banner slider.
   Widget _buildBannerSlider() {
     return StreamBuilder<ApiResponse<List<HomeBanner>>>(
-      stream: _homeBannerBloc.homeBannerListStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           switch (snapshot.data.status) {
@@ -132,7 +118,6 @@ class _HomePageState extends State<HomePage>
                 bottomRight: Radius.circular(30))),
         height: 265,
         child: StreamBuilder<ApiResponse<List<Service>>>(
-          stream: _serviceBloc.serviceListStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data?.data != null) {

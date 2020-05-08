@@ -11,8 +11,8 @@ import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_default_appbar.dart';
 import 'package:haircut_delivery/clientapp/ui/avatar/custom_circle_avatar.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/custom_btn_group.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 
 class ClientAppAccountPage extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;

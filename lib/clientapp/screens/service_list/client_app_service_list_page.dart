@@ -14,8 +14,8 @@ import 'package:haircut_delivery/clientapp/screens/service_list/widgets/client_a
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:haircut_delivery/clientapp/ui/appbar/client_app_navigator_appbar.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
+import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
-import 'package:haircut_delivery/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 
 class ClientAppServiceListPage extends StatefulWidget {
