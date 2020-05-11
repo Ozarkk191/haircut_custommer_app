@@ -1,6 +1,5 @@
 // import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/model/prediction.dart';
 // import 'package:google_maps_webservice/places.dart';
@@ -15,7 +14,7 @@ class TransparentToolBar extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: FlatButton(
         child: new Text(
-          AppLocalizations.of(context).tr('tool_bar_back_button'),
+          'tool_bar_back_button',
           style: TextStyle(
             color: Theme.of(context).primaryColor,
             fontWeight: FontWeight.normal,
@@ -129,9 +128,7 @@ class HomeToolBar extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 30, right: 10),
                             child: Text(
-                              locationName ??
-                                  AppLocalizations.of(context)
-                                      .tr('home_pin_location'),
+                              locationName ?? 'home_pin_location',
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: TextStyle(

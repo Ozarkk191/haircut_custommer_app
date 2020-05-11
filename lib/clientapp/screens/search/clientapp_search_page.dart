@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/service_categories.dart';
@@ -60,7 +59,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                '${AppLocalizations.of(context).tr('client_app_categories')}',
+                'client_app_categories',
                 style: textStyleWithLocale(
                   context: context,
                   color: Theme.of(context).primaryColor,
@@ -73,7 +72,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
               ),
               SizedBox(height: 15),
               Text(
-                '${AppLocalizations.of(context).tr('client_app_poppularty')}',
+                'client_app_poppularty',
                 style: textStyleWithLocale(
                   context: context,
                   color: Theme.of(context).primaryColor,
@@ -160,7 +159,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
         Image.asset('assets/clientapp/images/ic_haircut_man.png'),
         SizedBox(height: 15),
         Text(
-          AppLocalizations.of(context).tr('client_app_select_service_type'),
+          'client_app_select_service_type',
           style: textStyleWithLocale(
             context: context,
             color: Color(0xff6F6F6F),
@@ -192,7 +191,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
                   ),
                 ),
               ),
-              text: '${AppLocalizations.of(context).tr('client_app_booking')}',
+              text: 'client_app_booking',
             ),
             _actionBtn(
               context: context,
@@ -205,7 +204,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
                   ),
                 ),
               ),
-              text: '${AppLocalizations.of(context).tr('client_app_delivery')}',
+              text: 'client_app_delivery',
             ),
           ],
         ),

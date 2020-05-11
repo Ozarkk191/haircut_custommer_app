@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/screens/account/client_app_account_page.dart';
 import 'package:haircut_delivery/clientapp/screens/home/clientapp_home_page.dart';
@@ -67,49 +66,45 @@ class _ClientAppHomeScreenState extends State<ClientAppHomeScreen> {
     // Set the status bar's color.
     UiUtil.changeStatusColor(const Color.fromARGB(255, 67, 66, 73));
 
-    var data = EasyLocalizationProvider.of(context).data;
-    return EasyLocalizationProvider(
-      data: data,
-      child: Scaffold(
-        key: _scaffoldKey,
-        endDrawer: ClientAppDrawer(bgColor: Theme.of(context).primaryColor),
-        body: SafeArea(
-          child: PageView(
-            controller: _pageController,
-            onPageChanged: (index) {
-              setState(() {
-                _currentPage = index;
-              });
-            },
-            children: <Widget>[
-              ClientAppNearMePage(scaffoldKey: _scaffoldKey),
-              ClientAppSearchPage(scaffoldKey: _scaffoldKey),
-              ClientAppHomePage(scaffoldKey: _scaffoldKey),
-              MarketPlaceHomePage(scaffoldKey: _scaffoldKey),
-              ClientAppAccountPage(scaffoldKey: _scaffoldKey),
-            ],
-          ),
+    return Scaffold(
+      key: _scaffoldKey,
+      endDrawer: ClientAppDrawer(bgColor: Theme.of(context).primaryColor),
+      body: SafeArea(
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _currentPage = index;
+            });
+          },
+          children: <Widget>[
+            ClientAppNearMePage(scaffoldKey: _scaffoldKey),
+            ClientAppSearchPage(scaffoldKey: _scaffoldKey),
+            ClientAppHomePage(scaffoldKey: _scaffoldKey),
+            MarketPlaceHomePage(scaffoldKey: _scaffoldKey),
+            ClientAppAccountPage(scaffoldKey: _scaffoldKey),
+          ],
         ),
-        bottomNavigationBar: CurvedNavigationBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          activeColor: Theme.of(context).primaryColor,
-          inactiveColor: const Color(0xFF707070),
-          items: menuIcons,
-          labels: _buildMenuLabels(context),
-          index: _currentPage,
-          onTap: _handleOnTapBottomNav,
-        ),
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        activeColor: Theme.of(context).primaryColor,
+        inactiveColor: const Color(0xFF707070),
+        items: menuIcons,
+        labels: _buildMenuLabels(context),
+        index: _currentPage,
+        onTap: _handleOnTapBottomNav,
       ),
     );
   }
 
   List<String> _buildMenuLabels(BuildContext context) {
     return [
-      AppLocalizations.of(context).tr('menu_near_me'),
-      AppLocalizations.of(context).tr('client_app_search_menu'),
-      AppLocalizations.of(context).tr('marketplace_menu_home'),
-      AppLocalizations.of(context).tr('client_app_menu_marketplace'),
-      AppLocalizations.of(context).tr('marketplace_menu_account'),
+      'AppLocalizations.of(context).tr(menu_near_me)',
+      'AppLocalizations.of(context).tr(client_app_search_menu)',
+      'AppLocalizations.of(context).tr(marketplace_menu_home)',
+      'AppLocalizations.of(context).tr(client_app_menu_marketplace)',
+      'AppLocalizations.of(context).tr(marketplace_menu_account)',
     ];
   }
 

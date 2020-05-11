@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_service.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_shop.dart';
@@ -129,7 +128,7 @@ class ClientAppServiceItem extends StatelessWidget {
                     SizedBox(width: 5),
                     clientAppService.isPartner
                         ? Text(
-                            '${AppLocalizations.of(context).tr('client_app_is_partner')}',
+                            '',
                             style: textStyleWithLocale(context: context),
                           )
                         : _blankContainer(),
@@ -265,7 +264,7 @@ class ClientAppServiceItem extends StatelessWidget {
         color: Color(0xff1DAD1D),
         onPressed: callback,
         child: Text(
-          '${AppLocalizations.of(context).tr('client_app_reserve')}',
+          'client_app_reserve',
           style: textStyleWithLocale(
             context: context,
             color: Colors.white,

@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
@@ -120,7 +119,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
                     child: FlatButton(
                       onPressed: _fetch,
                       child: Text(
-                        '${AppLocalizations.of(context).tr('marketplace_see_more')}',
+                        '',
                         style: textStyleWithLocale(
                           context: context,
                           fontSize: 16,
@@ -220,7 +219,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            '${AppLocalizations.of(context).tr('home_free_coupons')}',
+            '',
             style: textStyleWithLocale(
               context: context,
               color: Colors.white,
@@ -365,7 +364,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
       children: <Widget>[
         Expanded(
           child: Text(
-            AppLocalizations.of(context).tr('client_app_recommended_products'),
+            '',
             style: textStyleWithLocale(
               context: context,
               fontSize: 18,
@@ -374,7 +373,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
           ),
         ),
         Text(
-          AppLocalizations.of(context).tr('marketplace_see_more'),
+          '',
           style: textStyleWithLocale(
             context: context,
             fontSize: 13,
@@ -458,7 +457,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            AppLocalizations.of(context).tr('home_recommended_shop'),
+            '',
             style: textStyleWithLocale(
               context: context,
               color: Theme.of(context).primaryColor,
@@ -467,7 +466,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
           ),
           SizedBox(height: 10),
           Text(
-            AppLocalizations.of(context).tr('client_app_popular_shop'),
+            '',
             style: textStyleWithLocale(
               context: context,
               color: Theme.of(context).primaryColor,

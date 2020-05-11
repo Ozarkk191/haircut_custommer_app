@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -73,7 +72,7 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
           PlaceAutocompleteToolBar(
             _suggestions,
             searchFieldKey: _searchFieldKey,
-            hintText: AppLocalizations.of(context).tr('pin_location_search'),
+            hintText: 'pin_location_search',
             onTextChanged: (text) {
               if (_placeAutocompleteDebounce?.isActive ?? false) {
                 _placeAutocompleteDebounce.cancel();
@@ -105,7 +104,7 @@ class _PinLocationScreenState extends State<PinLocationScreen> {
               child: SizedBox(
                 width: double.infinity,
                 child: PrimaryButton(
-                  text: AppLocalizations.of(context).tr('btn_confirm'),
+                  text: 'btn_confirm',
                   onPressed: () {
                     _goBack();
                   },

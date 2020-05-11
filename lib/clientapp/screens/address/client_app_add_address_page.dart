@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -145,10 +144,8 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
         anchor: const Offset(0.5, 0.8),
         icon: _markerIcon,
         infoWindow: InfoWindow(
-          title:
-              '${widget.address != null ? widget.address.addressTitle : AppLocalizations.of(context).tr('client_app_my_current_location')}',
-          snippet:
-              '${widget.address != null ? widget.address.addressTitle : AppLocalizations.of(context).tr('client_app_my_current_location')}',
+          title: '',
+          snippet: '',
         ),
       ),
     );
@@ -194,7 +191,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                           children: <Widget>[
                             Container(
                               child: Text(
-                                '${widget.address != null ? AppLocalizations.of(context).tr('client_app_edit_place') : AppLocalizations.of(context).tr('client_app_add_new_place')}',
+                                '',
                                 style: textStyleWithLocale(context: context),
                               ),
                             ),
@@ -340,8 +337,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(10),
                                         child: Text(
-                                          AppLocalizations.of(context)
-                                              .tr('add_my_place_open_map'),
+                                          '',
                                           style: const TextStyle(
                                               color: Colors.white),
                                           textAlign: TextAlign.center,
@@ -369,7 +365,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                   isShowCart: false,
                   isShowMenu: false,
                   title: Text(
-                    '${widget.address != null ? AppLocalizations.of(context).tr('client_app_edit_place') : AppLocalizations.of(context).tr('client_app_add_new_place')}',
+                    '',
                     style: textStyleWithLocale(
                       context: context,
                       color: Colors.white,

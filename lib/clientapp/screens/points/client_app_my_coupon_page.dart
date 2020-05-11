@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_coupons.dart';
@@ -62,7 +61,7 @@ class ClientAppMyCouponPage extends StatelessWidget {
               height: marketPlaceToolbarHeight,
               child: ClientAppDefaultAppBar(
                 title: Text(
-                  '${AppLocalizations.of(context).tr('account_my_coupon')}',
+                  'account_my_coupon',
                   style: textStyleWithLocale(
                     context: context,
                     color: Colors.white,

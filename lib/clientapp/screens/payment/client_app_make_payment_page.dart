@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/screens/home/clientapp_home_screen.dart';
@@ -72,7 +71,7 @@ class _ClientAppMakePaymentPageState extends State<ClientAppMakePaymentPage> {
                     SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        '${AppLocalizations.of(context).tr('client_app_payment_success')}',
+                        'client_app_payment_success',
                         style: textStyleWithLocale(
                           context: context,
                           fontSize: 16,
@@ -135,7 +134,7 @@ class _ClientAppMakePaymentPageState extends State<ClientAppMakePaymentPage> {
                       child: CustomRoundButton(
                         color: Theme.of(context).primaryColor,
                         child: Text(
-                          '${AppLocalizations.of(context).tr('client_app_submit')}',
+                          'client_app_submit',
                           style: textStyleWithLocale(
                             context: context,
                             color: Colors.white,
@@ -173,7 +172,7 @@ class _ClientAppMakePaymentPageState extends State<ClientAppMakePaymentPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            '${AppLocalizations.of(context).tr('client_app_choose_payment_options')}',
+            'client_app_choose_payment_options',
             style: textStyleWithLocale(
               context: context,
               color: Color(0xff707070),

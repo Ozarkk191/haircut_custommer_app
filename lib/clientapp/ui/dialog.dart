@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 /// Confirmation dialog.
@@ -15,17 +14,17 @@ class ConfirmDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: new Text(AppLocalizations.of(context).tr('dialog_confirm')),
+      title: new Text('dialog_confirm'),
       content: new Text(message),
       actions: <Widget>[
         new FlatButton(
-          child: new Text(AppLocalizations.of(context).tr('btn_cancel')),
+          child: new Text('btn_cancel'),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         new FlatButton(
-          child: new Text(AppLocalizations.of(context).tr('btn_confirm')),
+          child: new Text('btn_confirm'),
           onPressed: onConfirmed,
         ),
       ],
@@ -45,11 +44,11 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: new Text(AppLocalizations.of(context).tr('dialog_error')),
+      title: new Text('dialog_error'),
       content: new Text(message),
       actions: <Widget>[
         new FlatButton(
-          child: new Text(AppLocalizations.of(context).tr('btn_close')),
+          child: new Text('btn_close'),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -71,11 +70,11 @@ class SuccessDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: new Text(AppLocalizations.of(context).tr('dialog_success')),
+      title: new Text('dialog_success'),
       content: new Text(message),
       actions: <Widget>[
         new FlatButton(
-          child: new Text(AppLocalizations.of(context).tr('btn_close')),
+          child: new Text('btn_close'),
           onPressed: () {
             Navigator.of(context).pop();
           },

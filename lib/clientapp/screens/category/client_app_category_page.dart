@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_service_category.dart';
@@ -40,7 +39,7 @@ class ClientAppCategoryPage extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(height: 20),
                   Text(
-                    '${AppLocalizations.of(context).tr('client_app_categories')}',
+                    '',
                     style: textStyleWithLocale(
                       context: context,
                       color: Theme.of(context).primaryColor,

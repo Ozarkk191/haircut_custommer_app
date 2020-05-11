@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -254,7 +253,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
           ),
           SizedBox(height: 5),
           Text(
-            '${AppLocalizations.of(context).tr('client_app_count_time')} ${widget.shop.counting} ${AppLocalizations.of(context).tr('client_app_unit_times')}',
+            '',
             style: textStyleWithLocale(
               context: context,
               color: Color(0xff707070),
@@ -264,7 +263,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
           Row(
             children: <Widget>[
               Text(
-                '${AppLocalizations.of(context).tr('client_app_review_counting')} 99 ${AppLocalizations.of(context).tr('client_app_unit_times')}',
+                '',
                 style: textStyleWithLocale(
                   context: context,
                   color: Color(0xff707070),
@@ -314,7 +313,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            '${AppLocalizations.of(context).tr('client_app_service_list')}',
+            '',
             style: textStyleWithLocale(
               context: context,
               color: Theme.of(context).primaryColor,
@@ -362,7 +361,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
         color: Color(0xff009900),
         elevation: 3,
         child: Text(
-          '${AppLocalizations.of(context).tr('client_app_booking_time')}',
+          '',
           style: textStyleWithLocale(
             context: context,
             color: Colors.white,
@@ -379,7 +378,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text(
-          '${AppLocalizations.of(context).tr('client_app_shop_location')}',
+          '',
           style: textStyleWithLocale(
             context: context,
             fontSize: 18,
@@ -465,12 +464,12 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      '${AppLocalizations.of(context).tr('client_app_remarks')}',
+                      '',
                       style: _buyTextStyle(textSize: 14),
                     ),
                     SizedBox(width: 10),
                     Text(
-                      '${AppLocalizations.of(context).tr('client_app_optional')}',
+                      '',
                       style: _buyTextStyle(
                         textSize: 12,
                         fontWeight: FontWeight.w300,
@@ -545,7 +544,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
                   color: Theme.of(context).primaryColor,
                   elevation: 2,
                   child: Text(
-                    '${AppLocalizations.of(context).tr('client_app_add')}',
+                    '',
                     style: textStyleWithLocale(
                       context: context,
                       color: Colors.white,
@@ -692,7 +691,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
           );
         },
         child: Text(
-          '${AppLocalizations.of(context).tr('client_app_reserve')}',
+          'client_app_reserve',
           style: textStyleWithLocale(
             context: context,
             color: Colors.white,

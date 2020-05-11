@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_coupons.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
@@ -100,7 +99,7 @@ class ClientAppCouponItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          '${AppLocalizations.of(context).tr('client_app_discount')}',
+          '',
           style: textStyleWithLocale(
             context: context,
             height: 1,
@@ -118,7 +117,7 @@ class ClientAppCouponItem extends StatelessWidget {
           ),
         ),
         Text(
-          '${AppLocalizations.of(context).tr('client_app_discount_except')}',
+          '',
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: textStyleWithLocale(
@@ -130,7 +129,7 @@ class ClientAppCouponItem extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         Text(
-          '${AppLocalizations.of(context).tr('client_app_discount_except_promotion')}',
+          '',
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: textStyleWithLocale(
@@ -161,7 +160,7 @@ class ClientAppCouponItem extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         onPressed: () {},
         child: Text(
-          '${AppLocalizations.of(context).tr('client_app_get_discount_code')}',
+          '',
           style: textStyleWithLocale(
             context: context,
             color: Colors.white,

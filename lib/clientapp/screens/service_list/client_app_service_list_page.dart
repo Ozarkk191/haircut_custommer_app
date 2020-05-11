@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_services.dart';
@@ -122,7 +121,7 @@ class _ClientAppServiceListPageState extends State<ClientAppServiceListPage> {
                             child: FlatButton(
                               onPressed: _fetch,
                               child: Text(
-                                '${AppLocalizations.of(context).tr('marketplace_see_more')}',
+                                'marketplace_see_more',
                                 style: textStyleWithLocale(
                                   context: context,
                                   fontSize: 16,
@@ -158,7 +157,7 @@ class _ClientAppServiceListPageState extends State<ClientAppServiceListPage> {
   }
 
   Widget _buildBestHaircut() {
-    String languageCode = Localizations.localeOf(context).languageCode;
+    // String languageCode = Localizations.localeOf(context).languageCode;
 
     return ClipRRect(
       borderRadius: BorderRadius.only(
@@ -173,7 +172,7 @@ class _ClientAppServiceListPageState extends State<ClientAppServiceListPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              '${AppLocalizations.of(context).tr('client_app_the_best')}${languageCode == 'en' ? widget.category.categoryNameEN : widget.category.categoryNameTH}',
+              '',
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -244,7 +243,7 @@ class _ClientAppServiceListPageState extends State<ClientAppServiceListPage> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               child: Text(
-                '${AppLocalizations.of(context).tr('client_app_search_result')}',
+                'client_app_search_result',
                 style: textStyleWithLocale(
                   context: context,
                   fontSize: 16,

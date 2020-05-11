@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_version/get_version.dart';
@@ -19,25 +18,25 @@ class PrimaryDrawer extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 25),
                 ListTile(
-                  title: Text(AppLocalizations.of(context).tr('menu_policy')),
+                  title: Text('menu_policy'),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  title: Text(AppLocalizations.of(context).tr('menu_terms')),
+                  title: Text('menu_terms'),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  title: Text(AppLocalizations.of(context).tr('menu_contact')),
+                  title: Text('menu_contact'),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  title: Text(AppLocalizations.of(context).tr('menu_language')),
+                  title: Text('menu_language'),
                   onTap: () {
                     Navigator.pop(context);
                   },
@@ -57,8 +56,7 @@ class PrimaryDrawer extends StatelessWidget {
                           future: _fetchAppVersion(),
                           builder: (context, snapshot) {
                             if (snapshot.data != null) {
-                              return Text(AppLocalizations.of(context)
-                                  .tr('app_version', args: [snapshot.data]));
+                              return Text('app_version');
                             }
                             return Container();
                           }),
@@ -67,15 +65,13 @@ class PrimaryDrawer extends StatelessWidget {
                         child: SizedBox(
                           width: double.infinity,
                           child: PrimaryButton(
-                            text:
-                                AppLocalizations.of(context).tr('menu_log_out'),
+                            text: 'menu_log_out',
                             onPressed: () {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return ConfirmDialog(
-                                    message: AppLocalizations.of(context)
-                                        .tr('message_confirm_log_out'),
+                                    message: 'message_confirm_log_out',
                                     onConfirmed: () {
                                       _logOut(context);
                                     },

@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_shop.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
@@ -44,7 +43,7 @@ class ClientAppShopItem extends StatelessWidget {
                     SizedBox(height: 5),
                     _buildShopAddress(context: context),
                     Text(
-                      '${AppLocalizations.of(context).tr('client_app_count_time')} ${shop.counting} ${AppLocalizations.of(context).tr('client_app_unit_times')}',
+                      '',
                       style: textStyleWithLocale(
                         context: context,
                         color: Color(0xff707070),

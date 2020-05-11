@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization_delegate.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -258,7 +257,7 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
         Image.asset('assets/clientapp/images/ic_haircut_man.png'),
         SizedBox(height: 15),
         Text(
-          AppLocalizations.of(context).tr('client_app_select_service_type'),
+          'client_app_select_service_type',
           style: textStyleWithLocale(
             context: context,
             color: Color(0xff6F6F6F),
@@ -279,13 +278,13 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
             _actionBtn(
               context: context,
               callback: () => _setServiceType(serviceType: ServiceType.BOOKING),
-              text: '${AppLocalizations.of(context).tr('client_app_booking')}',
+              text: 'client_app_booking',
             ),
             _actionBtn(
               context: context,
               callback: () =>
                   _setServiceType(serviceType: ServiceType.DELIVERY),
-              text: '${AppLocalizations.of(context).tr('client_app_delivery')}',
+              text: 'client_app_delivery',
             ),
           ],
         ),

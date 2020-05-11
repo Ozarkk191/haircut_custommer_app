@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_coupons.dart';
@@ -64,7 +63,7 @@ class ClientAppMyPointPage extends StatelessWidget {
                     _buildPoints(context: context),
                     SizedBox(height: 20),
                     Text(
-                      '${AppLocalizations.of(context).tr('client_app_recommended_for_you')}',
+                      'client_app_recommended_for_you',
                       style: textStyleWithLocale(
                         context: context,
                         fontSize: 16,
@@ -74,7 +73,7 @@ class ClientAppMyPointPage extends StatelessWidget {
                     _buildRecommendedCoupons(),
                     SizedBox(height: 20),
                     Text(
-                      '${AppLocalizations.of(context).tr('client_app_redeem_point')}',
+                      'client_app_redeem_point',
                       style: textStyleWithLocale(
                         context: context,
                         fontSize: 16,
@@ -117,7 +116,7 @@ class ClientAppMyPointPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text(
-          '${AppLocalizations.of(context).tr('client_app_all_my_points')}',
+          'client_app_all_my_points',
           style: textStyleWithLocale(
             context: context,
             color: Color(0xff707070),
@@ -164,7 +163,7 @@ class ClientAppMyPointPage extends StatelessWidget {
                 );
               },
               child: Text(
-                '${AppLocalizations.of(context).tr('account_my_coupon')}',
+                'account_my_coupon',
                 style: textStyleWithLocale(
                   context: context,
                   color: Colors.white,

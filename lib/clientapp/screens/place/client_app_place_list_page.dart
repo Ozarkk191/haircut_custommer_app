@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -102,7 +101,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
                               Image.asset('assets/images/ic_coin.png'),
                               SizedBox(width: 5),
                               Text(
-                                '${AppLocalizations.of(context).tr('client_app_saved_location')}',
+                                'client_app_saved_location',
                                 style: textStyleWithLocale(
                                   context: context,
                                   fontSize: 16,
@@ -146,7 +145,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
                   isShowCart: false,
                   isShowMenu: false,
                   title: Text(
-                    '${AppLocalizations.of(context).tr('client_app_pin_location')}',
+                    'client_app_pin_location',
                     style: textStyleWithLocale(
                       context: context,
                       color: Colors.white,
@@ -180,7 +179,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
               ),
             ),
             child: Text(
-              '${AppLocalizations.of(context).tr('client_app_add_home')}',
+              'client_app_add_home',
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -205,7 +204,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
               ),
             ),
             child: Text(
-              '${AppLocalizations.of(context).tr('client_app_add_work')}',
+              'client_app_add_work',
               style: textStyleWithLocale(
                 context: context,
                 color: Color(0xff707070),
@@ -228,7 +227,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
             Image.asset('assets/images/ic_location.png'),
             SizedBox(width: 10),
             Text(
-              '${AppLocalizations.of(context).tr('client_app_use_current_location')}',
+              'client_app_use_current_location',
               style: textStyleWithLocale(
                 context: context,
                 fontSize: 16,

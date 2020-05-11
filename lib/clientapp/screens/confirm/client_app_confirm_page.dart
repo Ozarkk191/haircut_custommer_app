@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_services.dart';
@@ -245,7 +244,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              '${AppLocalizations.of(context).tr('client_app_your_cart')}',
+              '',
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -256,7 +255,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
             ),
             SizedBox(height: 10),
             Text(
-              '${AppLocalizations.of(context).tr('client_app_your_selected')}',
+              '',
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -290,7 +289,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              '${AppLocalizations.of(context).tr('client_app_your_cart')}',
+              '',
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -301,7 +300,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
             ),
             SizedBox(height: 10),
             Text(
-              '${AppLocalizations.of(context).tr('client_app_delivery_target')}',
+              '',
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -325,7 +324,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            '${AppLocalizations.of(context).tr('client_app_your_services')}',
+            '',
             style: textStyleWithLocale(
               context: context,
               color: Color(0xff707070),
@@ -370,7 +369,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text(
-          '${AppLocalizations.of(context).tr('client_app_booking_time')}',
+          '',
           style: textStyleWithLocale(
               context: context, color: Color(0xffDD133B), fontSize: 20),
         ),

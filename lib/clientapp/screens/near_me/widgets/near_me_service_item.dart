@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_shops.dart';
@@ -53,7 +52,7 @@ class NearMeServiceItem extends StatelessWidget {
                     ),
                     Text('$rnd km'),
                     Text(
-                      '${AppLocalizations.of(context).tr('client_app_review_counting')} ${shop.counting}',
+                      '',
                       style: textStyleWithLocale(context: context),
                     ),
                     RatingBar(

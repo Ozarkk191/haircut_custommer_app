@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
@@ -63,271 +62,261 @@ class _RegisterScreenState extends State<RegisterScreen> {
     //ignore: close_sinks
     final ValidateBloc _bloc = context.bloc<ValidateBloc>();
 
-    return EasyLocalizationProvider(
-      data: EasyLocalizationProvider.of(context).data,
-      child: Scaffold(
-        body: SafeArea(
-          child: Stack(
-            children: <Widget>[
-              ListView(
-                children: <Widget>[
-                  TransparentToolBar(),
-                  ScreenTitle(
-                      title: AppLocalizations.of(context).tr('register_title')),
-                  Row(
-                    children: <Widget>[
-                      Expanded(flex: 1, child: Container()),
-                      Expanded(
-                        flex: 5,
-                        child: Form(
-                          key: _registerFormKey,
-                          child: Column(
-                            children: <Widget>[
-                              BlocBuilder<ValidateBloc, ValidateState>(builder:
-                                  (BuildContext context, ValidateState state) {
-                                if (state is FirstErrorState) {
-                                  return BigRoundTextField(
-                                    hintText: 'First Name',
-                                    keyboardType: TextInputType.text,
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: <Widget>[
+            ListView(
+              children: <Widget>[
+                TransparentToolBar(),
+                ScreenTitle(title: 'register_title'),
+                Row(
+                  children: <Widget>[
+                    Expanded(flex: 1, child: Container()),
+                    Expanded(
+                      flex: 5,
+                      child: Form(
+                        key: _registerFormKey,
+                        child: Column(
+                          children: <Widget>[
+                            BlocBuilder<ValidateBloc, ValidateState>(builder:
+                                (BuildContext context, ValidateState state) {
+                              if (state is FirstErrorState) {
+                                return BigRoundTextField(
+                                  hintText: 'First Name',
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc
+                                        .add(FirstnameFieldEvent(value: value));
+                                    setState(() {
+                                      _firstname = value;
+                                    });
+                                  },
+                                  errorText: state.errorText,
+                                );
+                              } else {
+                                return BigRoundTextField(
+                                  hintText: 'First Name',
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc
+                                        .add(FirstnameFieldEvent(value: value));
+                                    setState(() {
+                                      _firstname = value;
+                                    });
+                                  },
+                                );
+                              }
+                            }),
+                            BlocBuilder<ValidateBloc, ValidateState>(builder:
+                                (BuildContext context, ValidateState state) {
+                              if (state is LastErrorState) {
+                                return BigRoundTextField(
+                                  marginTop: 20,
+                                  hintText: 'Last Name',
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc.add(LastnameFieldEvent(value: value));
+                                    setState(() {
+                                      _lastname = value;
+                                    });
+                                  },
+                                  errorText: state.errorText,
+                                );
+                              } else {
+                                return BigRoundTextField(
+                                  marginTop: 20,
+                                  hintText: 'Last Name',
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc.add(LastnameFieldEvent(value: value));
+                                    setState(() {
+                                      _lastname = value;
+                                    });
+                                  },
+                                );
+                              }
+                            }),
+                            Padding(
+                              padding: _inputPaddingBottom,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Radio(
+                                    value: Gender.MALE,
+                                    groupValue: _gender,
                                     onChanged: (value) {
-                                      _bloc.add(
-                                          FirstnameFieldEvent(value: value));
                                       setState(() {
-                                        _firstname = value;
+                                        _gender = value;
                                       });
                                     },
-                                    errorText: state.errorText,
-                                  );
-                                } else {
-                                  return BigRoundTextField(
-                                    hintText: 'First Name',
-                                    keyboardType: TextInputType.text,
+                                  ),
+                                  Text(
+                                    'register_male',
+                                    style:
+                                        TextStyle(color: _genderInputTextColor),
+                                  ),
+                                  SizedBox(width: 25),
+                                  Radio(
+                                    value: Gender.FEMALE,
+                                    groupValue: _gender,
                                     onChanged: (value) {
-                                      _bloc.add(
-                                          FirstnameFieldEvent(value: value));
                                       setState(() {
-                                        _firstname = value;
+                                        _gender = value;
                                       });
                                     },
-                                  );
-                                }
-                              }),
-                              BlocBuilder<ValidateBloc, ValidateState>(builder:
-                                  (BuildContext context, ValidateState state) {
-                                if (state is LastErrorState) {
-                                  return BigRoundTextField(
-                                    marginTop: 20,
-                                    hintText: 'Last Name',
-                                    keyboardType: TextInputType.text,
-                                    onChanged: (value) {
-                                      _bloc.add(
-                                          LastnameFieldEvent(value: value));
-                                      setState(() {
-                                        _lastname = value;
-                                      });
-                                    },
-                                    errorText: state.errorText,
-                                  );
-                                } else {
-                                  return BigRoundTextField(
-                                    marginTop: 20,
-                                    hintText: 'Last Name',
-                                    keyboardType: TextInputType.text,
-                                    onChanged: (value) {
-                                      _bloc.add(
-                                          LastnameFieldEvent(value: value));
-                                      setState(() {
-                                        _lastname = value;
-                                      });
-                                    },
-                                  );
-                                }
-                              }),
-                              Padding(
-                                padding: _inputPaddingBottom,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Radio(
-                                      value: Gender.MALE,
-                                      groupValue: _gender,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _gender = value;
-                                        });
-                                      },
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)
-                                          .tr('register_male'),
-                                      style: TextStyle(
-                                          color: _genderInputTextColor),
-                                    ),
-                                    SizedBox(width: 25),
-                                    Radio(
-                                      value: Gender.FEMALE,
-                                      groupValue: _gender,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _gender = value;
-                                        });
-                                      },
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)
-                                          .tr('register_female'),
-                                      style: TextStyle(
-                                          color: _genderInputTextColor),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  Text(
+                                    'register_female',
+                                    style:
+                                        TextStyle(color: _genderInputTextColor),
+                                  ),
+                                ],
                               ),
-                              BlocBuilder<ValidateBloc, ValidateState>(builder:
-                                  (BuildContext context, ValidateState state) {
-                                if (state is PhoneErrorState) {
-                                  return BigRoundTextField(
-                                    hintText: 'Phone Number',
-                                    keyboardType: TextInputType.phone,
-                                    onChanged: (value) {
-                                      _bloc.add(
-                                          PhoneNumberFieldEvent(value: value));
-                                      setState(() {
-                                        _phonenumber = value;
-                                      });
-                                    },
-                                    errorText: state.errorText,
-                                  );
-                                } else {
-                                  return BigRoundTextField(
-                                    hintText: 'Phone Number',
-                                    keyboardType: TextInputType.phone,
-                                    onChanged: (value) {
-                                      _bloc.add(
-                                          PhoneNumberFieldEvent(value: value));
-                                      setState(() {
-                                        _phonenumber = value;
-                                      });
-                                    },
-                                  );
-                                }
-                              }),
-                              BlocBuilder<ValidateBloc, ValidateState>(builder:
-                                  (BuildContext context, ValidateState state) {
-                                if (state is EmailErrorState) {
-                                  return BigRoundTextField(
-                                    marginTop: 20,
-                                    hintText: 'Email',
-                                    keyboardType: TextInputType.text,
-                                    onChanged: (value) {
-                                      _bloc.add(EmailFieldEvent(value: value));
-                                      setState(() {
-                                        _email = value;
-                                      });
-                                    },
-                                    errorText: state.errorText,
-                                  );
-                                } else {
-                                  return BigRoundTextField(
-                                    marginTop: 20,
-                                    hintText: 'Email',
-                                    keyboardType: TextInputType.text,
-                                    onChanged: (value) {
-                                      _bloc.add(EmailFieldEvent(value: value));
-                                      setState(() {
-                                        _email = value;
-                                      });
-                                    },
-                                  );
-                                }
-                              }),
-                              BlocBuilder<ValidateBloc, ValidateState>(builder:
-                                  (BuildContext context, ValidateState state) {
-                                if (state is PasswordErrorState) {
-                                  return BigRoundTextField(
-                                    marginTop: 20,
-                                    hintText: 'Password',
-                                    keyboardType: TextInputType.text,
-                                    obscureText: true,
-                                    onChanged: (value) {
-                                      _bloc.add(
-                                          PasswordFieldEvent(value: value));
-                                      setState(() {
-                                        _password = value;
-                                      });
-                                    },
-                                    errorText: state.errorText,
-                                  );
-                                } else {
-                                  return BigRoundTextField(
-                                    marginTop: 20,
-                                    hintText: 'Password',
-                                    keyboardType: TextInputType.text,
-                                    obscureText: true,
-                                    onChanged: (value) {
-                                      _bloc.add(
-                                          PasswordFieldEvent(value: value));
-                                      setState(() {
-                                        _password = value;
-                                      });
-                                    },
-                                  );
-                                }
-                              }),
-                              BlocBuilder<ValidateBloc, ValidateState>(builder:
-                                  (BuildContext context, ValidateState state) {
-                                if (state is RepeatPasswordErrorState) {
-                                  return BigRoundTextField(
-                                    marginTop: 20,
-                                    hintText: 'Password(Repeat)',
-                                    keyboardType: TextInputType.text,
-                                    obscureText: true,
-                                    onChanged: (value) {
-                                      _bloc.add(RepeatPasswordFieldEvent(
-                                        repeat: value,
-                                        password: _password,
-                                      ));
-                                      setState(() {
-                                        _passwordRepeat = value;
-                                      });
-                                    },
-                                    errorText: state.errorText,
-                                  );
-                                } else {
-                                  return BigRoundTextField(
-                                    marginTop: 20,
-                                    hintText: 'Password(Repeat)',
-                                    keyboardType: TextInputType.text,
-                                    obscureText: true,
-                                    onChanged: (value) {
-                                      _bloc.add(RepeatPasswordFieldEvent(
-                                        repeat: value,
-                                        password: _password,
-                                      ));
-                                      setState(() {
-                                        _passwordRepeat = value;
-                                      });
-                                    },
-                                  );
-                                }
-                              }),
-                              SizedBox(height: 30),
-                              BigRoundButton(
-                                callback: !_check() ? null : () {},
-                                textButton: 'Register',
-                                color:
-                                    !_check() ? Colors.grey : Color(0xffdd133b),
-                              ),
-                            ],
-                          ),
+                            ),
+                            BlocBuilder<ValidateBloc, ValidateState>(builder:
+                                (BuildContext context, ValidateState state) {
+                              if (state is PhoneErrorState) {
+                                return BigRoundTextField(
+                                  hintText: 'Phone Number',
+                                  keyboardType: TextInputType.phone,
+                                  onChanged: (value) {
+                                    _bloc.add(
+                                        PhoneNumberFieldEvent(value: value));
+                                    setState(() {
+                                      _phonenumber = value;
+                                    });
+                                  },
+                                  errorText: state.errorText,
+                                );
+                              } else {
+                                return BigRoundTextField(
+                                  hintText: 'Phone Number',
+                                  keyboardType: TextInputType.phone,
+                                  onChanged: (value) {
+                                    _bloc.add(
+                                        PhoneNumberFieldEvent(value: value));
+                                    setState(() {
+                                      _phonenumber = value;
+                                    });
+                                  },
+                                );
+                              }
+                            }),
+                            BlocBuilder<ValidateBloc, ValidateState>(builder:
+                                (BuildContext context, ValidateState state) {
+                              if (state is EmailErrorState) {
+                                return BigRoundTextField(
+                                  marginTop: 20,
+                                  hintText: 'Email',
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc.add(EmailFieldEvent(value: value));
+                                    setState(() {
+                                      _email = value;
+                                    });
+                                  },
+                                  errorText: state.errorText,
+                                );
+                              } else {
+                                return BigRoundTextField(
+                                  marginTop: 20,
+                                  hintText: 'Email',
+                                  keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    _bloc.add(EmailFieldEvent(value: value));
+                                    setState(() {
+                                      _email = value;
+                                    });
+                                  },
+                                );
+                              }
+                            }),
+                            BlocBuilder<ValidateBloc, ValidateState>(builder:
+                                (BuildContext context, ValidateState state) {
+                              if (state is PasswordErrorState) {
+                                return BigRoundTextField(
+                                  marginTop: 20,
+                                  hintText: 'Password',
+                                  keyboardType: TextInputType.text,
+                                  obscureText: true,
+                                  onChanged: (value) {
+                                    _bloc.add(PasswordFieldEvent(value: value));
+                                    setState(() {
+                                      _password = value;
+                                    });
+                                  },
+                                  errorText: state.errorText,
+                                );
+                              } else {
+                                return BigRoundTextField(
+                                  marginTop: 20,
+                                  hintText: 'Password',
+                                  keyboardType: TextInputType.text,
+                                  obscureText: true,
+                                  onChanged: (value) {
+                                    _bloc.add(PasswordFieldEvent(value: value));
+                                    setState(() {
+                                      _password = value;
+                                    });
+                                  },
+                                );
+                              }
+                            }),
+                            BlocBuilder<ValidateBloc, ValidateState>(builder:
+                                (BuildContext context, ValidateState state) {
+                              if (state is RepeatPasswordErrorState) {
+                                return BigRoundTextField(
+                                  marginTop: 20,
+                                  hintText: 'Password(Repeat)',
+                                  keyboardType: TextInputType.text,
+                                  obscureText: true,
+                                  onChanged: (value) {
+                                    _bloc.add(RepeatPasswordFieldEvent(
+                                      repeat: value,
+                                      password: _password,
+                                    ));
+                                    setState(() {
+                                      _passwordRepeat = value;
+                                    });
+                                  },
+                                  errorText: state.errorText,
+                                );
+                              } else {
+                                return BigRoundTextField(
+                                  marginTop: 20,
+                                  hintText: 'Password(Repeat)',
+                                  keyboardType: TextInputType.text,
+                                  obscureText: true,
+                                  onChanged: (value) {
+                                    _bloc.add(RepeatPasswordFieldEvent(
+                                      repeat: value,
+                                      password: _password,
+                                    ));
+                                    setState(() {
+                                      _passwordRepeat = value;
+                                    });
+                                  },
+                                );
+                              }
+                            }),
+                            SizedBox(height: 30),
+                            BigRoundButton(
+                              callback: !_check() ? null : () {},
+                              textButton: 'Register',
+                              color:
+                                  !_check() ? Colors.grey : Color(0xffdd133b),
+                            ),
+                          ],
                         ),
                       ),
-                      Expanded(flex: 1, child: Container()),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+                    ),
+                    Expanded(flex: 1, child: Container()),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

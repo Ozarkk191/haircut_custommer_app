@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/client_app_services.dart';
@@ -71,7 +70,7 @@ class _ClientAppPreviewPaymentPageState
                       child: CustomRoundButton(
                         color: Theme.of(context).primaryColor,
                         child: Text(
-                          '${AppLocalizations.of(context).tr('client_app_payment')}',
+                          'client_app_payment',
                           style: textStyleWithLocale(
                             context: context,
                             color: Colors.white,
@@ -123,7 +122,7 @@ class _ClientAppPreviewPaymentPageState
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              '${AppLocalizations.of(context).tr('client_app_your_cart')}',
+              'client_app_your_cart',
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -134,7 +133,7 @@ class _ClientAppPreviewPaymentPageState
             ),
             SizedBox(height: 10),
             Text(
-              '${AppLocalizations.of(context).tr('client_app_your_selected')}',
+              'client_app_your_selected',
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -161,7 +160,7 @@ class _ClientAppPreviewPaymentPageState
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            '${AppLocalizations.of(context).tr('client_app_your_services')}',
+            'client_app_your_services',
             style: textStyleWithLocale(
               context: context,
               color: Color(0xff707070),
@@ -206,7 +205,7 @@ class _ClientAppPreviewPaymentPageState
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text(
-          '${AppLocalizations.of(context).tr('client_app_booking_time')}',
+          'client_app_booking_time',
           style: textStyleWithLocale(
               context: context, color: Color(0xffDD133B), fontSize: 20),
         ),
