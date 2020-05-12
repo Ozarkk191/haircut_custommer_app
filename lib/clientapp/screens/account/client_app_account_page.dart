@@ -13,6 +13,7 @@ import 'package:haircut_delivery/clientapp/ui/avatar/custom_circle_avatar.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/custom_btn_group.dart';
 import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ClientAppAccountPage extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -69,7 +70,7 @@ class _ClientAppAccountPageState extends State<ClientAppAccountPage>
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 child: Text(
-                  'My Coupon',
+                  tr('account_my_coupon'),
                   style: textStyleWithLocale(
                     context: context,
                     color: Colors.white,
@@ -91,7 +92,7 @@ class _ClientAppAccountPageState extends State<ClientAppAccountPage>
             context: context,
             scaffoldKey: widget.scaffoldKey,
             title: Text(
-              'Account',
+              tr('account_title'),
               style: textStyleWithLocale(
                   context: context, color: Colors.white, fontSize: 20),
             ),
@@ -264,7 +265,7 @@ class _ClientAppAccountPageState extends State<ClientAppAccountPage>
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       ),
                       child: Text(
-                        'Edit Profile',
+                        tr('account_edit_profile'),
                         style: TextStyle(fontSize: 10),
                       ),
                     ),

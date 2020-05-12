@@ -16,6 +16,7 @@ import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
 import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ClientAppServiceListPage extends StatefulWidget {
   final ClientAppServiceCategory category;
@@ -121,7 +122,7 @@ class _ClientAppServiceListPageState extends State<ClientAppServiceListPage> {
                             child: FlatButton(
                               onPressed: _fetch,
                               child: Text(
-                                'marketplace_see_more',
+                                tr('marketplace_see_more'),
                                 style: textStyleWithLocale(
                                   context: context,
                                   fontSize: 16,
@@ -172,7 +173,7 @@ class _ClientAppServiceListPageState extends State<ClientAppServiceListPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              '',
+              tr('client_app_the_best'),
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -243,7 +244,7 @@ class _ClientAppServiceListPageState extends State<ClientAppServiceListPage> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               child: Text(
-                'client_app_search_result',
+                tr('client_app_search_result'),
                 style: textStyleWithLocale(
                   context: context,
                   fontSize: 16,

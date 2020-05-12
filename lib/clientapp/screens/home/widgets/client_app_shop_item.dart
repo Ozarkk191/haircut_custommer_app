@@ -3,6 +3,7 @@ import 'package:haircut_delivery/clientapp/models/client_app_service.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_shop.dart';
 import 'package:haircut_delivery/clientapp/styles/text_style_with_locale.dart';
 import 'package:intl/intl.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ClientAppServiceItem extends StatelessWidget {
   final ClientAppService clientAppService;
@@ -264,7 +265,7 @@ class ClientAppServiceItem extends StatelessWidget {
         color: Color(0xff1DAD1D),
         onPressed: callback,
         child: Text(
-          'client_app_reserve',
+          tr('client_app_reserve'),
           style: textStyleWithLocale(
             context: context,
             color: Colors.white,

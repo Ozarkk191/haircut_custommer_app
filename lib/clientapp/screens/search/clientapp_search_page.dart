@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/datas/service_categories.dart';
@@ -47,6 +48,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
   @override
   Widget build(BuildContext context) {
     String languageCode = Localizations.localeOf(context).languageCode;
+    EasyLocalization.of(context).delegates;
 
     super.build(context);
     return Stack(children: <Widget>[
@@ -59,7 +61,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'client_app_categories',
+                tr('client_app_categories'),
                 style: textStyleWithLocale(
                   context: context,
                   color: Theme.of(context).primaryColor,
@@ -72,7 +74,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
               ),
               SizedBox(height: 15),
               Text(
-                'client_app_poppularty',
+                tr('client_app_poppularty'),
                 style: textStyleWithLocale(
                   context: context,
                   color: Theme.of(context).primaryColor,
@@ -159,7 +161,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
         Image.asset('assets/clientapp/images/ic_haircut_man.png'),
         SizedBox(height: 15),
         Text(
-          'client_app_select_service_type',
+          tr('client_app_select_service_type'),
           style: textStyleWithLocale(
             context: context,
             color: Color(0xff6F6F6F),
@@ -191,7 +193,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
                   ),
                 ),
               ),
-              text: 'client_app_booking',
+              text: tr('client_app_booking'),
             ),
             _actionBtn(
               context: context,
@@ -204,7 +206,7 @@ class _ClientAppSearchPageState extends State<ClientAppSearchPage>
                   ),
                 ),
               ),
-              text: 'client_app_delivery',
+              text: tr('client_app_delivery'),
             ),
           ],
         ),

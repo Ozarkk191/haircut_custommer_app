@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
@@ -69,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ListView(
               children: <Widget>[
                 TransparentToolBar(),
-                ScreenTitle(title: 'register_title'),
+                ScreenTitle(title: tr('register_title')),
                 Row(
                   children: <Widget>[
                     Expanded(flex: 1, child: Container()),
@@ -83,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 (BuildContext context, ValidateState state) {
                               if (state is FirstErrorState) {
                                 return BigRoundTextField(
-                                  hintText: 'First Name',
+                                  hintText: tr('register_first_name'),
                                   keyboardType: TextInputType.text,
                                   onChanged: (value) {
                                     _bloc
@@ -96,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 );
                               } else {
                                 return BigRoundTextField(
-                                  hintText: 'First Name',
+                                  hintText: tr('register_first_name'),
                                   keyboardType: TextInputType.text,
                                   onChanged: (value) {
                                     _bloc
@@ -113,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (state is LastErrorState) {
                                 return BigRoundTextField(
                                   marginTop: 20,
-                                  hintText: 'Last Name',
+                                  hintText: tr('register_last_name'),
                                   keyboardType: TextInputType.text,
                                   onChanged: (value) {
                                     _bloc.add(LastnameFieldEvent(value: value));
@@ -126,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               } else {
                                 return BigRoundTextField(
                                   marginTop: 20,
-                                  hintText: 'Last Name',
+                                  hintText: tr('register_last_name'),
                                   keyboardType: TextInputType.text,
                                   onChanged: (value) {
                                     _bloc.add(LastnameFieldEvent(value: value));
@@ -152,7 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     },
                                   ),
                                   Text(
-                                    'register_male',
+                                    tr('register_male'),
                                     style:
                                         TextStyle(color: _genderInputTextColor),
                                   ),
@@ -167,7 +168,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     },
                                   ),
                                   Text(
-                                    'register_female',
+                                    tr('register_female'),
                                     style:
                                         TextStyle(color: _genderInputTextColor),
                                   ),
@@ -178,7 +179,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 (BuildContext context, ValidateState state) {
                               if (state is PhoneErrorState) {
                                 return BigRoundTextField(
-                                  hintText: 'Phone Number',
+                                  hintText: tr('register_phone'),
                                   keyboardType: TextInputType.phone,
                                   onChanged: (value) {
                                     _bloc.add(
@@ -191,7 +192,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 );
                               } else {
                                 return BigRoundTextField(
-                                  hintText: 'Phone Number',
+                                  hintText: tr('register_phone'),
                                   keyboardType: TextInputType.phone,
                                   onChanged: (value) {
                                     _bloc.add(
@@ -208,7 +209,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (state is EmailErrorState) {
                                 return BigRoundTextField(
                                   marginTop: 20,
-                                  hintText: 'Email',
+                                  hintText: tr('register_email'),
                                   keyboardType: TextInputType.text,
                                   onChanged: (value) {
                                     _bloc.add(EmailFieldEvent(value: value));
@@ -221,7 +222,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               } else {
                                 return BigRoundTextField(
                                   marginTop: 20,
-                                  hintText: 'Email',
+                                  hintText: tr('register_email'),
                                   keyboardType: TextInputType.text,
                                   onChanged: (value) {
                                     _bloc.add(EmailFieldEvent(value: value));
@@ -237,7 +238,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (state is PasswordErrorState) {
                                 return BigRoundTextField(
                                   marginTop: 20,
-                                  hintText: 'Password',
+                                  hintText: tr('register_password'),
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   onChanged: (value) {
@@ -251,7 +252,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               } else {
                                 return BigRoundTextField(
                                   marginTop: 20,
-                                  hintText: 'Password',
+                                  hintText: tr('register_password'),
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   onChanged: (value) {
@@ -268,7 +269,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (state is RepeatPasswordErrorState) {
                                 return BigRoundTextField(
                                   marginTop: 20,
-                                  hintText: 'Password(Repeat)',
+                                  hintText: tr('register_repeat_password'),
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   onChanged: (value) {
@@ -285,7 +286,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               } else {
                                 return BigRoundTextField(
                                   marginTop: 20,
-                                  hintText: 'Password(Repeat)',
+                                  hintText: tr('register_repeat_password'),
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   onChanged: (value) {
@@ -303,7 +304,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             SizedBox(height: 30),
                             BigRoundButton(
                               callback: !_check() ? null : () {},
-                              textButton: 'Register',
+                              textButton: tr('register_submit_button'),
                               color:
                                   !_check() ? Colors.grey : Color(0xffdd133b),
                             ),

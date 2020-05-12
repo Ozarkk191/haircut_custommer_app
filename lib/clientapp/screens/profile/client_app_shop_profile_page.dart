@@ -20,6 +20,7 @@ import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/horizontal_line.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ClientAppShopProfilePage extends StatefulWidget {
   final ClientAppShop shop;
@@ -253,7 +254,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
           ),
           SizedBox(height: 5),
           Text(
-            '',
+            tr('client_app_counting'),
             style: textStyleWithLocale(
               context: context,
               color: Color(0xff707070),
@@ -263,7 +264,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
           Row(
             children: <Widget>[
               Text(
-                '',
+                tr('client_app_review_counting'),
                 style: textStyleWithLocale(
                   context: context,
                   color: Color(0xff707070),
@@ -313,7 +314,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            '',
+            tr('client_app_service_list'),
             style: textStyleWithLocale(
               context: context,
               color: Theme.of(context).primaryColor,
@@ -361,7 +362,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
         color: Color(0xff009900),
         elevation: 3,
         child: Text(
-          '',
+          tr('btn_continue'),
           style: textStyleWithLocale(
             context: context,
             color: Colors.white,
@@ -378,7 +379,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text(
-          '',
+          tr('shop_location'),
           style: textStyleWithLocale(
             context: context,
             fontSize: 18,
@@ -691,7 +692,7 @@ class _ClientAppShopProfilePageState extends State<ClientAppShopProfilePage> {
           );
         },
         child: Text(
-          'client_app_reserve',
+          tr('client_app_reserve'),
           style: textStyleWithLocale(
             context: context,
             color: Colors.white,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class TextBack extends StatelessWidget {
@@ -11,7 +12,7 @@ class TextBack extends StatelessWidget {
           Navigator.pop(context);
         },
         child: Text(
-          '< Back',
+          tr('tool_bar_back_button'),
           style: TextStyle(fontSize: 12),
         ),
       ),

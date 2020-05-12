@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/marketplace_colors.dart';
 import 'package:haircut_delivery/clientapp/screens/points/client_app_my_point_page.dart';
@@ -34,16 +35,26 @@ class _ClientAppDrawerState extends State<ClientAppDrawer> {
     }
   }
 
-  // void _handleChangeLanguageSwitcher(bool value, data) {
-  //   setState(() {
-  //     isSwitched = value;
-  //     if (value) {
-  //       data.changeLocale(Locale("en", "US"));
-  //     } else {
-  //       data.changeLocale(Locale("th", "TH"));
-  //     }
-  //   });
-  // }
+  setNewLocale(BuildContext context, Locale locale) {
+    context.locale = locale;
+  }
+
+  void _handleChangeLanguageSwitcher(bool value, data) {
+    setState(() {
+      isSwitched = value;
+      if (value) {
+        setNewLocale(
+          context,
+          EasyLocalization.of(context).supportedLocales[0],
+        );
+      } else {
+        setNewLocale(
+          context,
+          EasyLocalization.of(context).supportedLocales[1],
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +74,7 @@ class _ClientAppDrawerState extends State<ClientAppDrawer> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          'marketplace_point',
+                          tr('marketplace_point'),
                           style: _drawerTextStyle(),
                         ),
                         Column(
@@ -85,7 +96,7 @@ class _ClientAppDrawerState extends State<ClientAppDrawer> {
                               ],
                             ),
                             Text(
-                              'marketplace_exchange_for_coupon',
+                              tr('marketplace_exchange_for_coupon'),
                               style: textStyleWithLocale(
                                 context: context,
                                 fontSize: 10,
@@ -108,7 +119,7 @@ class _ClientAppDrawerState extends State<ClientAppDrawer> {
                   ),
                   ListTile(
                     title: Text(
-                      'marketplace_menu_policy',
+                      tr('marketplace_menu_policy'),
                       style: _drawerTextStyle(),
                     ),
                     onTap: () {
@@ -128,7 +139,7 @@ class _ClientAppDrawerState extends State<ClientAppDrawer> {
                   ),
                   ListTile(
                     title: Text(
-                      'marketplace_menu_terms_and_conditions',
+                      tr('marketplace_menu_terms_and_conditions'),
                       style: _drawerTextStyle(),
                     ),
                     onTap: () {
@@ -148,7 +159,7 @@ class _ClientAppDrawerState extends State<ClientAppDrawer> {
                   ),
                   ListTile(
                     title: Text(
-                      'marketplace_menu_contact',
+                      tr('marketplace_menu_contact'),
                       style: _drawerTextStyle(),
                     ),
                     onTap: () {

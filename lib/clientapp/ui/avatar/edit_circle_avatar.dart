@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/models/client_app_user.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class EditCircleAvatar extends StatelessWidget {
   final ClientAppUser user;
@@ -69,7 +70,7 @@ class EditCircleAvatar extends StatelessWidget {
                       color: Colors.white,
                     ),
                     Text(
-                      'Edit image',
+                      tr('edit_profile_edit_image'),
                       style: TextStyle(color: Colors.white, fontSize: 8),
                     )
                   ],

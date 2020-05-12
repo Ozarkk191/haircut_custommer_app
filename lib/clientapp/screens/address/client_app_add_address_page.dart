@@ -22,6 +22,7 @@ import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/helpers/share_helper.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../models/address_model.dart';
 
@@ -129,7 +130,9 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
     final information = await Navigator.push(
       context,
       MaterialPageRoute(
-          fullscreenDialog: true, builder: (context) => PinLocationScreen()),
+          fullscreenDialog: true,
+          builder: (context) =>
+              PinLocationScreen(latitude: _latitude, longitude: _longitude)),
     );
     updateInformation(information);
   }
@@ -191,7 +194,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                           children: <Widget>[
                             Container(
                               child: Text(
-                                '',
+                                tr('edit_account_edit_address'),
                                 style: textStyleWithLocale(context: context),
                               ),
                             ),
@@ -202,7 +205,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                                 (BuildContext context, ValidateState state) {
                               if (state is TitleAddressErrorState) {
                                 return BigRoundTextField(
-                                  hintText: 'Title Address',
+                                  hintText: tr('add_my_place_place_title'),
                                   controller: _titleController,
                                   keyboardType: TextInputType.text,
                                   onChanged: (value) {
@@ -216,7 +219,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                                 );
                               } else {
                                 return BigRoundTextField(
-                                  hintText: 'Title Address',
+                                  hintText: tr('add_my_place_place_title'),
                                   controller: _titleController,
                                   keyboardType: TextInputType.text,
                                   onChanged: (value) {
@@ -234,7 +237,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                                 (BuildContext context, ValidateState state) {
                               if (state is AddressErrorState) {
                                 return BigRoundTextField(
-                                  hintText: 'Address',
+                                  hintText: tr('add_my_place_address'),
                                   maxLines: 4,
                                   controller: _addressController,
                                   keyboardType: TextInputType.text,
@@ -248,7 +251,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                                 );
                               } else {
                                 return BigRoundTextField(
-                                  hintText: 'Address',
+                                  hintText: tr('add_my_place_address'),
                                   maxLines: 4,
                                   controller: _addressController,
                                   keyboardType: TextInputType.text,
@@ -272,7 +275,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                               color: !_check()
                                   ? Colors.grey
                                   : Theme.of(context).primaryColor,
-                              textButton: 'บันทึก',
+                              textButton: tr('btn_save'),
                             ),
                           ],
                         ),
@@ -337,7 +340,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(10),
                                         child: Text(
-                                          '',
+                                          tr('add_my_place_open_map'),
                                           style: const TextStyle(
                                               color: Colors.white),
                                           textAlign: TextAlign.center,

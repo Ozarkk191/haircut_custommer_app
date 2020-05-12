@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/screens/account/client_app_account_page.dart';
 import 'package:haircut_delivery/clientapp/screens/home/clientapp_home_page.dart';
@@ -66,6 +67,7 @@ class _ClientAppHomeScreenState extends State<ClientAppHomeScreen> {
     // Set the status bar's color.
     UiUtil.changeStatusColor(const Color.fromARGB(255, 67, 66, 73));
 
+    EasyLocalization.of(context).delegates;
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: ClientAppDrawer(bgColor: Theme.of(context).primaryColor),
@@ -100,11 +102,11 @@ class _ClientAppHomeScreenState extends State<ClientAppHomeScreen> {
 
   List<String> _buildMenuLabels(BuildContext context) {
     return [
-      'AppLocalizations.of(context).tr(menu_near_me)',
-      'AppLocalizations.of(context).tr(client_app_search_menu)',
-      'AppLocalizations.of(context).tr(marketplace_menu_home)',
-      'AppLocalizations.of(context).tr(client_app_menu_marketplace)',
-      'AppLocalizations.of(context).tr(marketplace_menu_account)',
+      tr('menu_near_me'),
+      tr('client_app_search_menu'),
+      tr('marketplace_menu_home'),
+      tr('client_app_menu_marketplace'),
+      tr('marketplace_menu_account'),
     ];
   }
 

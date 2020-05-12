@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
@@ -39,7 +40,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           TextBack(),
           Container(
             child: Text(
-              'Reset Password',
+              tr('reset_password_title'),
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 25, color: Colors.red),
             ),
@@ -49,7 +50,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             if (state is PasswordErrorState) {
               return BigRoundTextField(
                 marginTop: 20,
-                hintText: 'Password',
+                hintText: tr('reset_password_password'),
                 keyboardType: TextInputType.text,
                 obscureText: true,
                 onChanged: (value) {
@@ -63,7 +64,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             } else {
               return BigRoundTextField(
                 marginTop: 20,
-                hintText: 'Password',
+                hintText: tr('reset_password_password'),
                 keyboardType: TextInputType.text,
                 obscureText: true,
                 onChanged: (value) {
@@ -80,7 +81,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             if (state is RepeatPasswordErrorState) {
               return BigRoundTextField(
                 marginTop: 20,
-                hintText: 'Password(Repeat)',
+                hintText: tr('reset_password_repeat_password'),
                 keyboardType: TextInputType.text,
                 obscureText: true,
                 onChanged: (value) {
@@ -97,7 +98,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             } else {
               return BigRoundTextField(
                 marginTop: 20,
-                hintText: 'Password(Repeat)',
+                hintText: tr('reset_password_repeat_password'),
                 keyboardType: TextInputType.text,
                 obscureText: true,
                 onChanged: (value) {
@@ -114,7 +115,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           }),
           SizedBox(height: 20),
           BigRoundButton(
-            textButton: 'Submit',
+            textButton: tr('btn_submit'),
             callback: !_check() ? null : () {},
             color: !_check() ? Colors.grey : Color(0xffdd133b),
           ),

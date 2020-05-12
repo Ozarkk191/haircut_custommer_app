@@ -16,6 +16,7 @@ import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ClientAppPlaceListPage extends StatefulWidget {
   ClientAppPlaceListPage({Key key}) : super(key: key);
@@ -41,9 +42,9 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
     super.initState();
   }
 
-  _getCurrentLocation() {
+  _getCurrentLocation() async {
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-    geolocator
+    await geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
       setState(() {
@@ -101,7 +102,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
                               Image.asset('assets/images/ic_coin.png'),
                               SizedBox(width: 5),
                               Text(
-                                'client_app_saved_location',
+                                tr('client_app_saved_location'),
                                 style: textStyleWithLocale(
                                   context: context,
                                   fontSize: 16,
@@ -145,7 +146,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
                   isShowCart: false,
                   isShowMenu: false,
                   title: Text(
-                    'client_app_pin_location',
+                    tr('client_app_pin_location'),
                     style: textStyleWithLocale(
                       context: context,
                       color: Colors.white,
@@ -179,7 +180,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
               ),
             ),
             child: Text(
-              'client_app_add_home',
+              tr('client_app_add_home'),
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -204,7 +205,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
               ),
             ),
             child: Text(
-              'client_app_add_work',
+              tr('client_app_add_work'),
               style: textStyleWithLocale(
                 context: context,
                 color: Color(0xff707070),
@@ -227,7 +228,7 @@ class _ClientAppPlaceListPageState extends State<ClientAppPlaceListPage> {
             Image.asset('assets/images/ic_location.png'),
             SizedBox(width: 10),
             Text(
-              'client_app_use_current_location',
+              tr('client_app_use_current_location'),
               style: textStyleWithLocale(
                 context: context,
                 fontSize: 16,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
@@ -57,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (state is PhoneErrorState) {
                     return BigRoundTextField(
                       marginTop: 20,
-                      hintText: 'Phone Number',
+                      hintText: tr('login_username'),
                       keyboardType: TextInputType.phone,
                       onChanged: (value) {
                         _bloc.add(PhoneNumberFieldEvent(value: value));
@@ -70,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   } else {
                     return BigRoundTextField(
                       marginTop: 20,
-                      hintText: 'Phone Number',
+                      hintText: tr('login_username'),
                       keyboardType: TextInputType.phone,
                       onChanged: (value) {
                         _bloc.add(PhoneNumberFieldEvent(value: value));
@@ -86,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (state is PasswordErrorState) {
                     return BigRoundTextField(
                       marginTop: 20,
-                      hintText: 'Password',
+                      hintText: tr('login_password'),
                       keyboardType: TextInputType.text,
                       obscureText: true,
                       onChanged: (value) {
@@ -100,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   } else {
                     return BigRoundTextField(
                       marginTop: 20,
-                      hintText: 'Password',
+                      hintText: tr('login_password'),
                       keyboardType: TextInputType.text,
                       obscureText: true,
                       onChanged: (value) {
@@ -124,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.centerRight,
                     margin: EdgeInsets.only(right: 40, top: 5),
                     child: Text(
-                      'forgot password',
+                      tr('login_forgot_password'),
                       style: TextStyle(
                         color: Colors.red,
                         fontSize: 12,
@@ -138,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 BigRoundButton(
                   callback: !_check() ? null : () {},
-                  textButton: 'LOGIN',
+                  textButton: tr('login_log_in_button'),
                   color: !_check() ? Colors.grey : Color(0xffdd133b),
                 ),
                 SizedBox(
@@ -146,14 +147,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 BigRoundButton(
                   callback: () {},
-                  textButton: 'Login With Facebook',
+                  textButton: tr('login_log_in_facebook_button'),
                   color: Color(0xff4167B2),
                 ),
                 SizedBox(
                   height: 50,
                 ),
                 Text(
-                  'Please register if you are not yet a member.',
+                  tr('login_please_register'),
                   style: TextStyle(fontSize: 12),
                 ),
                 SizedBox(
@@ -166,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         MaterialPageRoute(
                             builder: (context) => RegisterScreen()));
                   },
-                  textButton: 'Register',
+                  textButton: tr('login_register_button'),
                   color: Color(0xff444444),
                 ),
               ],

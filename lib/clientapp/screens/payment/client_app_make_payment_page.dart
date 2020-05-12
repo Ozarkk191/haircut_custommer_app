@@ -8,6 +8,7 @@ import 'package:haircut_delivery/clientapp/ui/buttons/custom_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ClientAppMakePaymentPage extends StatefulWidget {
   ClientAppMakePaymentPage({
@@ -71,7 +72,7 @@ class _ClientAppMakePaymentPageState extends State<ClientAppMakePaymentPage> {
                     SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        'client_app_payment_success',
+                        tr('client_app_payment_success'),
                         style: textStyleWithLocale(
                           context: context,
                           fontSize: 16,
@@ -134,7 +135,7 @@ class _ClientAppMakePaymentPageState extends State<ClientAppMakePaymentPage> {
                       child: CustomRoundButton(
                         color: Theme.of(context).primaryColor,
                         child: Text(
-                          'client_app_submit',
+                          tr('client_app_submit'),
                           style: textStyleWithLocale(
                             context: context,
                             color: Colors.white,
@@ -172,7 +173,7 @@ class _ClientAppMakePaymentPageState extends State<ClientAppMakePaymentPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            'client_app_choose_payment_options',
+            tr('client_app_choose_payment_options'),
             style: textStyleWithLocale(
               context: context,
               color: Color(0xff707070),

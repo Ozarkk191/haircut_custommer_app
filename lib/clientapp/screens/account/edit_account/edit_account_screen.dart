@@ -5,6 +5,7 @@ import 'package:haircut_delivery/clientapp/ui/appbar/client_app_normal_appbar.da
 import 'package:haircut_delivery/clientapp/ui/buttons/big_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/text_line.dart';
 import 'package:haircut_delivery/clientapp/ui/textfield/big_round_textfield.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class EditAccountScreen extends StatefulWidget {
   @override
@@ -47,12 +48,12 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
               child: Column(
                 children: <Widget>[
                   SizedBox(height: 120),
-                  TextLine(title: 'บัญชีผู้ใช้'),
+                  TextLine(title: tr('edit_account_account')),
                   BlocBuilder<ValidateBloc, ValidateState>(
                       builder: (BuildContext context, ValidateState state) {
                     if (state is PhoneErrorState) {
                       return BigRoundTextField(
-                        hintText: 'Phonenumber',
+                        hintText: tr('edit_account_phone'),
                         marginTop: 20,
                         keyboardType: TextInputType.phone,
                         onChanged: (value) {
@@ -65,7 +66,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       );
                     } else {
                       return BigRoundTextField(
-                        hintText: 'Phonenumber',
+                        hintText: tr('edit_account_phone'),
                         marginTop: 20,
                         keyboardType: TextInputType.phone,
                         onChanged: (value) {
@@ -81,7 +82,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       builder: (BuildContext context, ValidateState state) {
                     if (state is EmailErrorState) {
                       return BigRoundTextField(
-                        hintText: 'Email',
+                        hintText: tr('edit_account_email'),
                         marginTop: 20,
                         keyboardType: TextInputType.text,
                         onChanged: (value) {
@@ -94,7 +95,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       );
                     } else {
                       return BigRoundTextField(
-                        hintText: 'Email',
+                        hintText: tr('edit_account_email'),
                         marginTop: 20,
                         keyboardType: TextInputType.text,
                         onChanged: (value) {
@@ -107,12 +108,12 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                     }
                   }),
                   SizedBox(height: 40),
-                  TextLine(title: 'password'),
+                  TextLine(title: tr('edit_account_password')),
                   BlocBuilder<ValidateBloc, ValidateState>(
                       builder: (BuildContext context, ValidateState state) {
                     if (state is PasswordErrorState) {
                       return BigRoundTextField(
-                        hintText: 'New Password',
+                        hintText: tr('edit_account_new_password'),
                         marginTop: 20,
                         obscureText: true,
                         keyboardType: TextInputType.text,
@@ -126,7 +127,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       );
                     } else {
                       return BigRoundTextField(
-                        hintText: 'New Password',
+                        hintText: tr('edit_account_new_password'),
                         marginTop: 20,
                         obscureText: true,
                         keyboardType: TextInputType.text,
@@ -143,7 +144,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       builder: (BuildContext context, ValidateState state) {
                     if (state is RepeatPasswordErrorState) {
                       return BigRoundTextField(
-                        hintText: 'Password (Repeat)',
+                        hintText: tr('edit_account_repeat_password'),
                         marginTop: 20,
                         obscureText: true,
                         keyboardType: TextInputType.text,
@@ -160,7 +161,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       );
                     } else {
                       return BigRoundTextField(
-                        hintText: 'Password (Repeat)',
+                        hintText: tr('edit_account_repeat_password'),
                         marginTop: 20,
                         obscureText: true,
                         keyboardType: TextInputType.text,
@@ -180,13 +181,13 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                   BigRoundButton(
                     callback: () {},
                     color: !_check() ? Colors.grey : Color(0xffDD133B),
-                    textButton: 'Save',
+                    textButton: tr('btn_save'),
                   )
                 ],
               ),
             ),
           ),
-          ClientAppNormalAppBar(title: 'Edit Account')
+          ClientAppNormalAppBar(title: tr('edit_account'))
         ],
       ),
     );

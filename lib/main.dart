@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
         ),
         // home: SplashScreen(),
         home: ClientAppSplashScreen(),
+        // home: LoginScreen(),
         // home: ExpansionTileSample(),
         // home: MarketPlaceHomeScreen(),
       ),

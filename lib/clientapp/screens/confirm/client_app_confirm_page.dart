@@ -15,6 +15,7 @@ import 'package:haircut_delivery/clientapp/ui/seperate_lines/horizontal_line.dar
 import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/clientapp/ui/transitions/slide_up_transition.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ClientAppConfirmPage extends StatefulWidget {
   final ClientAppShop shop;
@@ -199,7 +200,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
                       child: CustomRoundButton(
                         color: Color(0xff009900),
                         child: Text(
-                          'Confirm',
+                          tr('btn_confirm'),
                           style: textStyleWithLocale(
                             context: context,
                             color: Colors.white,
@@ -244,7 +245,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              '',
+              tr('client_app_your_cart'),
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -255,7 +256,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
             ),
             SizedBox(height: 10),
             Text(
-              '',
+              tr('client_app_your_selected'),
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -289,7 +290,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              '',
+              tr('client_app_your_cart'),
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -300,7 +301,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
             ),
             SizedBox(height: 10),
             Text(
-              '',
+              tr('client_app_your_selected'),
               style: textStyleWithLocale(
                 context: context,
                 color: Colors.white,
@@ -369,7 +370,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text(
-          '',
+          tr('client_app_booking_time'),
           style: textStyleWithLocale(
               context: context, color: Color(0xffDD133B), fontSize: 20),
         ),
@@ -382,7 +383,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    'Date',
+                    tr('client_app_date'),
                     style: textStyleWithLocale(context: context, fontSize: 16),
                   ),
                   SizedBox(height: 5),
@@ -403,7 +404,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    'Time',
+                    tr('client_app_time'),
                     style: textStyleWithLocale(context: context, fontSize: 16),
                   ),
                   SizedBox(height: 5),
@@ -429,7 +430,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text(
-          'Total Price',
+          tr('client_app_total_price'),
           style: textStyleWithLocale(
               context: context, color: Color(0xffDD133B), fontSize: 20),
         ),
@@ -456,7 +457,7 @@ class _ClientAppConfirmPageState extends State<ClientAppConfirmPage> {
           children: <Widget>[
             Expanded(
               child: Text(
-                'Total',
+                tr('client_app_total'),
                 style: textStyleWithLocale(
                   context: context,
                   fontSize: 16,

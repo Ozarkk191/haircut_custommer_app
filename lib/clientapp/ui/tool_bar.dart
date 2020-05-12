@@ -1,5 +1,6 @@
 // import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/model/prediction.dart';
 // import 'package:google_maps_webservice/places.dart';
@@ -14,7 +15,7 @@ class TransparentToolBar extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: FlatButton(
         child: new Text(
-          'tool_bar_back_button',
+          tr('tool_bar_back_button'),
           style: TextStyle(
             color: Theme.of(context).primaryColor,
             fontWeight: FontWeight.normal,

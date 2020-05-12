@@ -6,6 +6,7 @@ import 'package:haircut_delivery/clientapp/ui/appbar/client_app_normal_appbar.da
 import 'package:haircut_delivery/clientapp/ui/avatar/custom_circle_avatar.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/text_edit_line.dart';
 import 'package:haircut_delivery/clientapp/ui/textfield/big_round_textfield.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:haircut_delivery/model/user.dart';
 
 class ViewProfileScreen extends StatefulWidget {
@@ -42,28 +43,28 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                           MaterialPageRoute(
                               builder: (context) => EditProfileScreen()));
                     },
-                    title: 'ข้อมูลผู้ใช้',
+                    title: tr('profile_profile'),
                   ),
                   BigRoundTextField(
                     marginTop: 20,
                     enabled: false,
-                    hintText: "First Name",
+                    hintText: tr("profile_first_name"),
                   ),
                   BigRoundTextField(
                     marginTop: 20,
                     enabled: false,
-                    hintText: "Last Name",
+                    hintText: tr("profile_last_name"),
                   ),
                   _buildRadio(),
                   BigRoundTextField(
                     marginTop: 20,
                     enabled: false,
-                    hintText: "Adderss",
+                    hintText: tr("profile_address_home"),
                   ),
                   BigRoundTextField(
                     marginTop: 20,
                     enabled: false,
-                    hintText: "Adderss",
+                    hintText: tr("add_my_place_address"),
                     maxLines: 4,
                   ),
                   SizedBox(height: 20),
@@ -74,28 +75,29 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                             MaterialPageRoute(
                                 builder: (context) => EditAccountScreen()));
                       },
-                      title: 'บัญชีผู้ใช้'),
+                      title: tr('profile_account')),
                   BigRoundTextField(
                     marginTop: 20,
                     enabled: false,
-                    hintText: 'Phone Number',
+                    hintText: tr('profile_phone'),
                   ),
                   BigRoundTextField(
-                    marginTop: 20,
-                    enabled: false,
-                    hintText: 'Email',
-                  ),
+                      marginTop: 20,
+                      enabled: false,
+                      hintText: tr(
+                        'profile_email',
+                      )),
                   BigRoundTextField(
                     marginTop: 20,
                     enabled: false,
-                    hintText: 'Password',
+                    hintText: tr('profile_password'),
                   ),
                   SizedBox(height: 20)
                 ],
               ),
             ),
           ),
-          ClientAppNormalAppBar(title: 'View Profile')
+          ClientAppNormalAppBar(title: tr('profile_title'))
         ],
       ),
     );
@@ -116,7 +118,7 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
             },
           ),
           Text(
-            'Male',
+            tr('profile_gender_male'),
             style: TextStyle(fontSize: 12),
           ),
           SizedBox(width: 10),
@@ -130,7 +132,7 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
             },
           ),
           Text(
-            'Female',
+            tr('profile_gender_female'),
             style: TextStyle(fontSize: 12),
           ),
           SizedBox(width: 10),
@@ -144,7 +146,7 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
             },
           ),
           Text(
-            'Other',
+            tr('profile_gender_other'),
             style: TextStyle(fontSize: 12),
           ),
         ],

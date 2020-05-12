@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/screens/forgotpasswordemail/forgot_password_email.dart';
 import 'package:haircut_delivery/clientapp/screens/forgotpasswordotp/forgot_password_otp.dart';
@@ -19,7 +20,7 @@ class ForgotPasswordScreen extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             child: Text(
-              'Forget Password',
+              tr('login_forgot_password'),
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
@@ -27,7 +28,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
           TextBack(),
           Container(
             child: Text(
-              'Please enter phone number\nTo receive the OTP code',
+              tr('forgot_password_otp_phone_instruction'),
               style: TextStyle(color: Colors.red, fontSize: 18),
               textAlign: TextAlign.center,
             ),
@@ -37,7 +38,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
             if (state is PhoneErrorState) {
               return BigRoundTextField(
                 marginTop: 20,
-                hintText: 'Phone Number',
+                hintText: tr('forgot_password_otp_phone'),
                 keyboardType: TextInputType.phone,
                 onChanged: (value) {
                   _bloc.add(PhoneNumberFieldEvent(value: value));
@@ -50,7 +51,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
             } else {
               return BigRoundTextField(
                 marginTop: 20,
-                hintText: 'Phone Number',
+                hintText: tr('forgot_password_otp_phone'),
                 keyboardType: TextInputType.phone,
                 onChanged: (value) {
                   _bloc.add(PhoneNumberFieldEvent(value: value));
@@ -63,7 +64,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
           }),
           SizedBox(height: 20),
           BigRoundButton(
-            textButton: 'Request OTP',
+            textButton: tr('forgot_password_otp_request_button'),
             callback: _phone == "" ? null : () {},
             color: _phone == "" ? Color(0xffcccccc) : Color(0xffdd133b),
           ),
@@ -84,7 +85,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
             ),
           ),
           BigRoundButton(
-            textButton: 'Submit OTP',
+            textButton: tr('forgot_password_otp_submit_button'),
             callback: () {
               Navigator.push(
                   context,

@@ -8,6 +8,7 @@ import 'package:haircut_delivery/clientapp/ui/avatar/edit_circle_avatar.dart';
 import 'package:haircut_delivery/clientapp/ui/buttons/big_round_button.dart';
 import 'package:haircut_delivery/clientapp/ui/seperate_lines/text_line.dart';
 import 'package:haircut_delivery/clientapp/ui/textfield/big_round_textfield.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:haircut_delivery/model/user.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -62,12 +63,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     borderColor: Theme.of(context).primaryColor,
                   ),
                   SizedBox(height: 10),
-                  TextLine(title: 'ข้อมูลผู้ใช้'),
+                  TextLine(title: tr('profile_profile')),
                   BlocBuilder<ValidateBloc, ValidateState>(
                       builder: (BuildContext context, ValidateState state) {
                     if (state is FirstErrorState) {
                       return BigRoundTextField(
-                        hintText: 'Firstname',
+                        hintText: tr('profile_first_name'),
                         marginTop: 10,
                         keyboardType: TextInputType.text,
                         onChanged: (value) {
@@ -80,7 +81,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       );
                     } else {
                       return BigRoundTextField(
-                        hintText: 'Firstname',
+                        hintText: tr('profile_first_name'),
                         marginTop: 10,
                         keyboardType: TextInputType.text,
                         onChanged: (value) {
@@ -97,7 +98,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     if (state is LastErrorState) {
                       return BigRoundTextField(
                         marginTop: 10,
-                        hintText: 'Lastname',
+                        hintText: tr('profile_last_name'),
                         keyboardType: TextInputType.text,
                         onChanged: (value) {
                           _bloc.add(LastnameFieldEvent(value: value));
@@ -110,7 +111,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     } else {
                       return BigRoundTextField(
                         marginTop: 10,
-                        hintText: 'Lastname',
+                        hintText: tr('profile_last_name'),
                         keyboardType: TextInputType.text,
                         onChanged: (value) {
                           _bloc.add(LastnameFieldEvent(value: value));
@@ -124,11 +125,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   _buildRadio(),
                   BigRoundTextField(
                     marginTop: 10,
-                    hintText: 'ที่ทำงาน',
+                    hintText: tr('profile_address_work'),
                   ),
                   BigRoundTextField(
                     marginTop: 10,
-                    hintText: 'address',
+                    hintText: tr('add_my_place_address'),
                     maxLines: 4,
                     enabled: false,
                     keyboardType: TextInputType.text,
@@ -146,20 +147,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           MaterialPageRoute(
                               builder: (context) => AddAddressScreen()));
                     },
-                    textButton: '+ เพิ่มที่อยู่อื่น',
+                    textButton: tr('edit_profile_add_address_button'),
                     color: Color(0xff444444),
                   ),
                   SizedBox(height: 10),
                   BigRoundButton(
                     callback: !_check() ? null : () {},
-                    textButton: 'Save',
+                    textButton: tr('btn_save'),
                     color: Color(0xffDD133B),
                   )
                 ],
               ),
             ),
           ),
-          ClientAppNormalAppBar(title: 'Edit Profile')
+          ClientAppNormalAppBar(title: tr('edit_profile_title'))
         ],
       ),
     );
@@ -180,7 +181,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             },
           ),
           Text(
-            'Male',
+            tr('profile_gender_male'),
             style: TextStyle(fontSize: 12),
           ),
           SizedBox(width: 10),
@@ -194,7 +195,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             },
           ),
           Text(
-            'Female',
+            tr('profile_gender_female'),
             style: TextStyle(fontSize: 12),
           ),
           SizedBox(width: 10),
@@ -208,7 +209,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             },
           ),
           Text(
-            'Other',
+            tr('profile_gender_other'),
             style: TextStyle(fontSize: 12),
           ),
         ],

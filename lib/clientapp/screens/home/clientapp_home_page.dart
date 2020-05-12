@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
@@ -98,6 +99,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
 
   @override
   Widget build(BuildContext context) {
+    EasyLocalization.of(context).delegates;
     super.build(context);
     return Stack(children: <Widget>[
       SingleChildScrollView(
@@ -119,7 +121,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
                     child: FlatButton(
                       onPressed: _fetch,
                       child: Text(
-                        '',
+                        tr("home_see_more"),
                         style: textStyleWithLocale(
                           context: context,
                           fontSize: 16,
@@ -219,7 +221,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            '',
+            tr('home_free_coupons'),
             style: textStyleWithLocale(
               context: context,
               color: Colors.white,
@@ -364,7 +366,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
       children: <Widget>[
         Expanded(
           child: Text(
-            '',
+            tr("home_recommended_product"),
             style: textStyleWithLocale(
               context: context,
               fontSize: 18,
@@ -457,7 +459,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            '',
+            tr("home_recommended_shop"),
             style: textStyleWithLocale(
               context: context,
               color: Theme.of(context).primaryColor,
@@ -466,7 +468,7 @@ class _ClientAppHomePageState extends State<ClientAppHomePage>
           ),
           SizedBox(height: 10),
           Text(
-            '',
+            tr("home_popular_shop"),
             style: textStyleWithLocale(
               context: context,
               color: Theme.of(context).primaryColor,

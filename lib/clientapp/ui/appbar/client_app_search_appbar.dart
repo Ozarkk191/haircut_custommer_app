@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:haircut_delivery/clientapp/config/all_constants.dart';
 import 'package:haircut_delivery/clientapp/screens/category/widgets/client_app_category_item.dart';
@@ -95,7 +96,7 @@ class ClientAppSearchAppBar extends PreferredSize {
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     color: Color(0xff009900),
                     child: Text(
-                      'client_app_change',
+                      tr('client_app_change'),
                       style: textStyleWithLocale(
                         context: context,
                         color: Colors.white,
@@ -128,7 +129,7 @@ class ClientAppSearchAppBar extends PreferredSize {
             SizedBox(width: 10),
             Expanded(
               child: Text(
-                'client_app_current_location',
+                tr('client_app_current_location'),
                 style: textStyleWithLocale(
                   context: context,
                 ),

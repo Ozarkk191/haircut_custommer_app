@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
@@ -23,20 +24,10 @@ class _ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
           TextBack(),
           Container(
             child: Text(
-              'กรุณากรอก Email',
+              tr('forgot_password_otp_email_instruction'),
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 18,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Container(
-            child: Text(
-              'เพื่อรับ Email สำหรับตั้งค่ารหัสผ่านใหม่',
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: 14,
               ),
               textAlign: TextAlign.center,
             ),
@@ -72,7 +63,7 @@ class _ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
           }),
           SizedBox(height: 20),
           BigRoundButton(
-            textButton: 'Submit',
+            textButton: tr('btn_submit'),
             callback: _email == ""
                 ? null
                 : () {

@@ -7,6 +7,7 @@ import 'package:haircut_delivery/clientapp/ui/appbar/client_app_default_appbar.d
 import 'package:haircut_delivery/clientapp/ui/client_app_drawer.dart';
 import 'package:haircut_delivery/clientapp/ui/tool_bar.dart';
 import 'package:haircut_delivery/util/ui_util.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ClientAppCategoryPage extends StatelessWidget {
   final ClientAppServiceCategory category;
@@ -39,7 +40,7 @@ class ClientAppCategoryPage extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(height: 20),
                   Text(
-                    '',
+                    tr('client_app_the_best'),
                     style: textStyleWithLocale(
                       context: context,
                       color: Theme.of(context).primaryColor,
