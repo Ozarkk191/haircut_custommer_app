@@ -39,22 +39,22 @@ class _ClientAppDrawerState extends State<ClientAppDrawer> {
     context.locale = locale;
   }
 
-  void _handleChangeLanguageSwitcher(bool value, data) {
-    setState(() {
-      isSwitched = value;
-      if (value) {
-        setNewLocale(
-          context,
-          EasyLocalization.of(context).supportedLocales[0],
-        );
-      } else {
-        setNewLocale(
-          context,
-          EasyLocalization.of(context).supportedLocales[1],
-        );
-      }
-    });
-  }
+  // void _handleChangeLanguageSwitcher(bool value, data) {
+  //   setState(() {
+  //     isSwitched = value;
+  //     if (value) {
+  //       setNewLocale(
+  //         context,
+  //         EasyLocalization.of(context).supportedLocales[0],
+  //       );
+  //     } else {
+  //       setNewLocale(
+  //         context,
+  //         EasyLocalization.of(context).supportedLocales[1],
+  //       );
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

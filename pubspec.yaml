@@ -111,10 +111,7 @@ flutter:
           weight: 300
         - asset: assets/marketplace/fonts/kanit/Kanit-Regular.ttf
           weight: 400
-    - family: Roboto
-      fonts:
-        - asset: assets/marketplace/fonts/roboto/Roboto-Medium.ttf
-          weight: 400
+  
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

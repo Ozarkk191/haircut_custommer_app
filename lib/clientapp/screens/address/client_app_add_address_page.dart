@@ -75,7 +75,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
     }
   }
 
-  void _saveData() async {
+  _saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _prefList = prefs.getStringList('address');
     // AddressModel value = AddressModel(
@@ -95,6 +95,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
         addressLon: _longitude,
       );
       _prefList.add(json.encode(value));
+      // _prefList.add('sss');
       print('value to String ::  $_prefList');
       SharedPref().save('address', _prefList);
     });
@@ -104,6 +105,7 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
     super.initState();
     _getCurrentLocation();
     _createMarkerImageFromAsset(context);
+
     if (widget.address != null) {
       _titleController.text = widget.address.addressTitle;
       _addressController.text = widget.address.address;

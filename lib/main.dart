@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
           primaryColor: const Color(0xFFDD133B),
           accentColor: const Color(0xFFDD133B),
-          fontFamily: 'Montserrat',
+          fontFamily: 'Kanit',
           // textTheme: TextTheme(
           //   headline6: TextStyle(
           //       fontSize: 72,
