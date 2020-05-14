@@ -77,28 +77,36 @@ class _ClientAppAddAddressPageState extends State<ClientAppAddAddressPage> {
 
   _saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _prefList = prefs.getStringList('address');
-    // AddressModel value = AddressModel(
-    //   addressType: '5555555',
-    //   addressTitle: '99999',
-    //   address: '666666',
-    //   addressLat: 111111111.00,
-    //   addressLon: 2222222.00,
-    // );
+    List<String> list = prefs.getStringList('address');
 
-    setState(() {
-      AddressModel value = AddressModel(
-        addressType: widget.typeAddress,
-        addressTitle: _titleAddress,
-        address: _address,
-        addressLat: _latitude,
-        addressLon: _longitude,
-      );
-      _prefList.add(json.encode(value));
-      // _prefList.add('sss');
-      print('value to String ::  $_prefList');
-      SharedPref().save('address', _prefList);
-    });
+    if (list != null) {
+      _prefList.addAll(list);
+      setState(() {
+        AddressModel value = AddressModel(
+          addressType: widget.typeAddress,
+          addressTitle: _titleAddress,
+          address: _address,
+          addressLat: _latitude,
+          addressLon: _longitude,
+        );
+        _prefList.add(json.encode(value));
+        print('value to String ::  $_prefList');
+        SharedPref().save('address', _prefList);
+      });
+    } else {
+      setState(() {
+        AddressModel value = AddressModel(
+          addressType: widget.typeAddress,
+          addressTitle: _titleAddress,
+          address: _address,
+          addressLat: _latitude,
+          addressLon: _longitude,
+        );
+        _prefList.add(json.encode(value));
+        print('value to String ::  $_prefList');
+        SharedPref().save('address', _prefList);
+      });
+    }
   }
 
   void initState() {
