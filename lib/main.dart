@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haircut_delivery/bloc/validate/validate_bloc.dart';
+import 'package:haircut_delivery/page/screens/splash/splash_screen_page.dart';
 
-import 'clientapp/screens/splash/splash_screen_page.dart';
 // import 'package:haircut_delivery/marketplace/screens/home/marketplace_home_screen.dart';
 // import 'package:haircut_delivery/screen/home/home_screen.dart';
 
