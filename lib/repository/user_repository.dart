@@ -17,7 +17,8 @@ class UserRepository {
 
   /// Logs in.
   Future<Tokens> logIn(LoginParameters parameters) async {
-    final response = await _client.post('customer-users/log-in', data: parameters);
+    final response =
+        await _client.post('customer-users/log-in', data: parameters);
 
     // Persist the access token.
     Tokens tokens = Tokens.fromJson(response);
@@ -33,8 +34,10 @@ class UserRepository {
   }
 
   /// Logs in with Facebook.
-  Future<Tokens> logInWithFacebook(LogInWithFacebookParameters parameters) async {
-    final response = await _client.post('customer-users/log-in-with-facebook', data: parameters);
+  Future<Tokens> logInWithFacebook(
+      LogInWithFacebookParameters parameters) async {
+    final response = await _client.post('customer-users/log-in-with-facebook',
+        data: parameters);
 
     // Persist the access token.
     Tokens tokens = Tokens.fromJson(response);
@@ -45,35 +48,45 @@ class UserRepository {
 
   /// Fetches my user info.
   Future<User> fetchMyUser() async {
-    final response = await _client.get('customer-users/me', withAccessToken: true);
+    final response =
+        await _client.get('customer-users/me', withAccessToken: true);
     return User.fromJson(response);
   }
 
   /// Request a password reset OTP by email address.
-  Future requestPasswordResetOtpByEmail(RequestPasswordResetOtpByEmailParameters parameters) async {
-    return await _client.post('customer-users/request-password-reset-otp', data: parameters);
+  Future requestPasswordResetOtpByEmail(
+      RequestPasswordResetOtpByEmailParameters parameters) async {
+    return await _client.post('customer-users/request-password-reset-otp',
+        data: parameters);
   }
 
   /// Request a password reset OTP by pone number.
-  Future requestPasswordResetOtpByPhone(RequestPasswordResetOtpByPhoneParameters parameters) async {
-    return await _client.post('customer-users/request-password-reset-otp', data: parameters);
+  Future requestPasswordResetOtpByPhone(
+      RequestPasswordResetOtpByPhoneParameters parameters) async {
+    return await _client.post('customer-users/request-password-reset-otp',
+        data: parameters);
   }
 
   /// Submits a password reset OTP by email address.
-  Future<PasswordResetToken> submitPasswordResetOtpByEmail(SubmitPasswordResetOtpByEmailParameters parameters) async {
-    final response = await _client.post('customer-users/submit-password-reset-otp', data: parameters);
+  Future<PasswordResetToken> submitPasswordResetOtpByEmail(
+      SubmitPasswordResetOtpByEmailParameters parameters) async {
+    final response = await _client
+        .post('customer-users/submit-password-reset-otp', data: parameters);
     return PasswordResetToken.fromJson(response);
   }
 
   /// Submits a password reset OTP by phone number.
-  Future submitPasswordResetOtpByPhone(SubmitPasswordResetOtpByPhoneParameters parameters) async {
-    final response = await _client.post('customer-users/submit-password-reset-otp', data: parameters);
+  Future submitPasswordResetOtpByPhone(
+      SubmitPasswordResetOtpByPhoneParameters parameters) async {
+    final response = await _client
+        .post('customer-users/submit-password-reset-otp', data: parameters);
     return PasswordResetToken.fromJson(response);
   }
 
   /// Submits a new password along with a password reset code.
   Future resetPassword(ResetPasswordParameters parameters) async {
-    return await _client.post('customer-users/reset-password', data: parameters);
+    return await _client.post('customer-users/reset-password',
+        data: parameters);
   }
 
   /// Returns true if the current user has not logged in, false otherwise.

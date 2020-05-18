@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:haircut_delivery/config/all_constants.dart';
 import 'package:haircut_delivery/datas/client_app_services.dart';
 import 'package:haircut_delivery/datas/client_app_shops.dart';
 import 'package:haircut_delivery/datas/nearme_categories.dart';
 import 'package:haircut_delivery/model/client_app_service.dart';
 import 'package:haircut_delivery/page/base_components/appbar/client_app_search_appbar.dart';
 import 'package:haircut_delivery/page/base_components/buttons/custom_round_button.dart';
+import 'package:haircut_delivery/page/base_components/buttons/small_round_button.dart';
 import 'package:haircut_delivery/page/base_components/transitions/slide_up_transition.dart';
 import 'package:haircut_delivery/page/screens/category/widgets/client_app_category_item.dart';
 import 'package:haircut_delivery/page/screens/category/widgets/client_app_service_type_dialog_no_title.dart';
@@ -124,7 +124,7 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
           child: Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: marketPlaceNavToolbar + 10),
+                margin: EdgeInsets.only(top: 75),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -144,31 +144,17 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
                     ),
                     Row(
                       children: <Widget>[
-                        Container(
-                          width: 80,
-                          height: 30,
-                          child: RaisedButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Booking',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ),
+                        SmallRoundButton(
+                          callback: () {},
+                          textButton: 'Booking',
                         ),
                         SizedBox(
                           width: 5,
                         ),
-                        Container(
-                          width: 80,
-                          height: 30,
-                          child: RaisedButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Delivery',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ),
-                        )
+                        SmallRoundButton(
+                          callback: () {},
+                          textButton: 'Delivery',
+                        ),
                       ],
                     ),
                   ],
@@ -181,7 +167,7 @@ class _ClientAppNearMePageState extends State<ClientAppNearMePage>
         ),
       ),
       Container(
-        height: marketPlaceNavToolbar,
+        height: 65,
         child: ClientAppSearchAppBar(
           changeCallback: () => _showDialog(context: context),
           context: context,

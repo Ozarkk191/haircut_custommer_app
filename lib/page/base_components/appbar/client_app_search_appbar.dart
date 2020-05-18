@@ -22,7 +22,6 @@ class ClientAppSearchAppBar extends PreferredSize {
           key: key,
           preferredSize: Size.fromHeight(marketPlaceNavToolbar),
           child: Container(
-            height: marketPlaceNavToolbar,
             child: AppBar(
               actions: <Widget>[
                 Container(),
@@ -77,35 +76,6 @@ class ClientAppSearchAppBar extends PreferredSize {
                 ],
               ),
             ],
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Text(
-                  '',
-                  style: textStyleWithLocale(
-                    context: context,
-                    color: Colors.white,
-                  ),
-                ),
-                InkWell(
-                  onTap: changeCallback,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    color: Color(0xff009900),
-                    child: Text(
-                      tr('client_app_change'),
-                      style: textStyleWithLocale(
-                        context: context,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ),
         ],
       ),
